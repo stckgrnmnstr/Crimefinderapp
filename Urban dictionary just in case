@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urban Dictionary Integration</title>
+</head>
+<body>
+    <h1>Urban Dictionary</h1>
+    <input type="text" id="search-input" placeholder="Enter a word or phrase">
+    <button id="search-btn">Search</button>
+    <div id="definition"></div>
+
+    <script>
+        const searchInput = document.getElementById('search-input');
+        const searchBtn = document.getElementById('search-btn');
+        const definitionDiv = document.getElementById('definition');
+
+        searchBtn.addEventListener('click', searchDefinition);
+
+        async function searchDefinition() {
+            const term = searchInput.value;
+            if (!term) return;
+
+            const url = `https://api.urbandictionary.com/v0/define?term=${encodeURIComponent(term)}`;
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data.list && data.list.length > 0) {
+                    const definition = data.list[0].definition;
+                    definitionDiv.innerHTML = `<h2>${term}</h2><p>${definition}</p>`;
+                } else {
+                    definitionDiv.innerHTML = `<p>No definition found for "${term}"</p>`;
+                }
+            } catch (error) {
+                console.error('Error fetching definition:', error);
+                definitionDiv.innerHTML = `<p>Error fetching definition. Please try again later.</p>`;
+            }
+        }
+    </script>
+</body>
+</html>
