@@ -1,0 +1,66 @@
+import kotlin.math.*
+
+fun main() {
+    // Calculate the wave function using the Schrödinger equation
+    val waveFunction = calculateWaveFunction(5.0, 2.0, 10.0)
+    println("Wave Function: $waveFunction")
+
+    // Calculate the probability density based on the wave function
+    val probabilityDensity = calculateProbabilityDensity(waveFunction)
+    println("Probability Density: $probabilityDensity")
+
+    // Calculate the expectation value of position for a quantum particle
+    val expectationValue = calculateExpectationValue(1.0, 3.0, 2.0)
+    println("Expectation Value of Position: $expectationValue")
+
+    // Calculate the uncertainty in momentum using Heisenberg's uncertainty principle
+    val uncertaintyMomentum = calculateUncertaintyMomentum(1.0, 0.1)
+    println("Uncertainty in Momentum: $uncertaintyMomentum")
+
+    // Calculate the ground state energy of a quantum system
+    val groundStateEnergy = calculateGroundStateEnergy(0.5, 2.0)
+    println("Ground State Energy: $groundStateEnergy")
+
+    // Calculate D₃ using the given formula
+    val D₃ = calculateD₃()
+    println("D₃: $D₃")
+
+    // Calculate the potential energy using the provided equation
+    val potentialEnergy = calculatePotentialEnergy(1.0, 2.0, 3.0, 1.0)
+    println("Potential Energy: $potentialEnergy")
+}
+
+fun calculateWaveFunction(x: Double, a: Double, k: Double): Double {
+    return sqrt(2 / a) * sin(k * x)
+}
+
+fun calculateProbabilityDensity(waveFunction: Double): Double {
+    return waveFunction.pow(2)
+}
+
+fun calculateExpectationValue(x: Double, psi: Double, psiConjugate: Double): Double {
+    return x * psi.pow(2) * psiConjugate
+}
+
+fun calculateUncertaintyMomentum(deltaX: Double, deltaT: Double): Double {
+    return hbar() / (2 * deltaX * deltaT)
+}
+
+fun calculateGroundStateEnergy(m: Double, omega: Double): Double {
+    return (m * omega.pow(2) * hbar()) / 2
+}
+
+fun calculateD₃(): Double {
+    val piTerm = PI.pow(1 - 0)
+    val eTerm = E.pow(1 + 0)
+    return 2 + piTerm + eTerm
+}
+
+fun calculatePotentialEnergy(lambda: Double, m: Double, c: Double, i: Double): Double {
+    val term1 = (-1) * (lambda.pow(i) * m * c).pow(2)
+    return term1
+}
+
+fun hbar(): Double {
+    return 1.0545718e-34 // Reduced Planck constant in J s
+}
