@@ -1,0 +1,34 @@
+import kotlin.math.pow
+import kotlin.math.E
+import kotlin.math.PI
+
+// Function to generate all values based on specific criteria
+fun generateAllValues(criteria: String): List<Double> {
+    // Define the symbolic components
+    val D3 = 2 + PI.pow(1.0 - 0.0) + E.pow(1.0 + 0.0)
+    val symbolicCriteria = when (criteria) {
+        "specific_criteria_1" -> D3 * 2
+        "specific_criteria_2" -> D3 / 2
+        else -> D3 // Default to the symbolic expression for all potential criteria
+    }
+
+    // Generate all values based on the symbolic criteria
+    val values = mutableListOf<Double>()
+    for (i in 1..10) { // Generate values from 1 to 10 as an example
+        values.add(symbolicCriteria * i)
+    }
+    return values
+}
+
+fun main() {
+    // Generate all values based on specific criteria
+    val allValues = generateAllValues("specific_criteria_1")
+    println("All Values based on Specific Criteria 1: $allValues")
+
+    val anotherSetOfValues = generateAllValues("specific_criteria_2")
+    println("Another Set of Values based on Specific Criteria 2: $anotherSetOfValues")
+
+    // Generate all values based on default criteria
+    val defaultValues = generateAllValues("default_criteria")
+    println("Default Values based on Default Criteria: $defaultValues")
+}
