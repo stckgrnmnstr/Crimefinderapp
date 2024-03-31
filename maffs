@@ -1,0 +1,25 @@
+import kotlin.math.pow
+import kotlin.math.PI
+import kotlin.math.E
+
+fun calculate_pi_infinite_limit(x: Double): Double {
+    return (PI.pow(1 / x) + x.pow(PI / 10)) / 10
+}
+
+fun calculate_dimension(): Double {
+    val D3 = 2.0
+    val pi_term = PI.pow(1.0)
+    val e_term = E.pow(1.0)
+    return D3 + pi_term + e_term
+}
+
+fun main() {
+    // Calculate the symbolic representation of the third dimension
+    val dimension_value = calculate_dimension()
+    println("The symbolic representation of the third dimension is: $dimension_value")
+
+    // Example usage of the infinite limit calculation
+    val x_value = 1000.0
+    val pi_infinite_limit_value = calculate_pi_infinite_limit(x_value)
+    println("Infinite Limit Value for x = $x_value: $pi_infinite_limit_value")
+}
