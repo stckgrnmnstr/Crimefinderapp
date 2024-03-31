@@ -1,0 +1,69 @@
+import kotlin.math.pow
+
+fun main() {
+    val m = 1 // Mass
+    val c = 3 // Speed of light
+    val lambda = 2 // Lambda
+    val i = 5 // Imaginary number
+    val r = 4 // Radius
+
+    // Calculate E for each equation
+    val equation1 = calculateEquation1(m, c)
+    val equation2 = calculateEquation2(lambda, i, m, c)
+    val equation3 = calculateEquation3(m, c)
+    val equation4 = calculateEquation4(lambda, i, m, c)
+    val equation5 = calculateEquation5(lambda, i, m, c)
+    val equation6 = calculateEquation6(lambda, i, m, c, r)
+    val equation7 = calculateEquation7(lambda, i)
+    val equationYes = calculateEquationYes(m, c)
+
+    // Output the results
+    println("Equation 1: E ≠ imc, Result: $equation1")
+    println("Equation 2: E = (-1)((λ^i)mc)², Result: $equation2")
+    println("Equation 3: E = (-1)imc², Result: $equation3")
+    println("Equation 4: E = (-1)((λ^i)(mc))², Result: $equation4")
+    println("Equation 5: E = (-1)m(λ^i)c², Result: $equation5")
+    println("Equation 6: E = (-1)((λ^i)mc/2πr)², Result: $equation6")
+    println("Equation 7: E = (-1)(λ^i), Result: $equation7")
+    println("Equation Yes: E = mc², Result: $equationYes")
+}
+
+fun calculateEquation1(m: Int, c: Int): Int {
+    // E ≠ imc
+    return m * c
+}
+
+fun calculateEquation2(lambda: Int, i: Int, m: Int, c: Int): Int {
+    // E = (-1)((λ^i)mc)²
+    return (-1) * ((lambda.toDouble().pow(i)) * m * c).toInt().pow(2)
+}
+
+fun calculateEquation3(m: Int, c: Int): Int {
+    // E = (-1)imc²
+    return (-1) * m * c.toDouble().pow(2).toInt()
+}
+
+fun calculateEquation4(lambda: Int, i: Int, m: Int, c: Int): Int {
+    // E = (-1)((λ^i)(mc))²
+    return (-1) * ((lambda.toDouble().pow(i)) * m * c).toInt().pow(2)
+}
+
+fun calculateEquation5(lambda: Int, i: Int, m: Int, c: Int): Int {
+    // E = (-1)m(λ^i)c²
+    return (-1) * m * (lambda.toDouble().pow(i)) * c.toDouble().pow(2).toInt()
+}
+
+fun calculateEquation6(lambda: Int, i: Int, m: Int, c: Int, r: Int): Int {
+    // E = (-1)((λ^i)mc/2πr)²
+    return (-1) * ((lambda.toDouble().pow(i)) * m * c / (2 * Math.PI * r)).toInt().pow(2)
+}
+
+fun calculateEquation7(lambda: Int, i: Int): Int {
+    // E = (-1)(λ^i)
+    return (-1) * (lambda.toDouble().pow(i)).toInt()
+}
+
+fun calculateEquationYes(m: Int, c: Int): Int {
+    // E = mc²
+    return m * c.toDouble().pow(2).toInt()
+}
