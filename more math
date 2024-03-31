@@ -1,0 +1,14 @@
+import kotlin.math.pow
+
+fun calculate_pi_nested_exponential_limit(iterations: Int): Double {
+    var nested_pi = Math.PI
+    repeat(iterations) {
+        nested_pi = nested_pi.pow(nested_pi)
+    }
+    return nested_pi.pow(1.0 / 3)
+}
+
+// Example usage
+val nested_iterations = 100000
+val pi_nested_limit_value = calculate_pi_nested_exponential_limit(nested_iterations)
+println("Nested Exponential Limit Value: $pi_nested_limit_value")
