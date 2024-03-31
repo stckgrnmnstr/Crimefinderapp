@@ -1,0 +1,48 @@
+import kotlin.math.pow
+
+// CrimeFinderApp class with enhanced functionality for quantized points and space correlation
+class CrimeFinderApp {
+    // Function to calculate the correlation between quantized points
+    fun calculateQuantizedPointsCorrelation(points: List<Double>): Double {
+        // Example: Calculate the sum of squared differences
+        val mean = points.average()
+        val sumOfSquaredDifferences = points.map { (it - mean).pow(2) }.sum()
+        return sumOfSquaredDifferences / points.size
+    }
+
+    // Function to determine the correlation between points and their corresponding spaces
+    fun determineSpaceCorrelation(point: Double, space: Double): Boolean {
+        // Example: Check if the point falls within a specified range in the space
+        val lowerBound = space - 1.0 // Example lower bound of space
+        val upperBound = space + 1.0 // Example upper bound of space
+        return point in lowerBound..upperBound
+    }
+
+    // Function to confirm shared spaces and confirmation status
+    fun confirmSharedSpaceConfirmation(isConfirmed: Boolean): String {
+        return if (isConfirmed) "Confirmation: Confirmed" else "Confirmation: Not Confirmed"
+    }
+}
+
+fun main() {
+    // Example usage
+    val app = CrimeFinderApp()
+
+    // Example quantized points data
+    val pointsData = listOf(10.0, 15.0, 20.0, 25.0, 30.0)
+
+    // Calculate quantized points correlation
+    val quantizedPointsCorrelation = app.calculateQuantizedPointsCorrelation(pointsData)
+    println("Quantized Points Correlation: $quantizedPointsCorrelation")
+
+    // Example point and space correlation
+    val point = 15.0 // Example point
+    val space = 20.0 // Example space
+    val isCorrelated = app.determineSpaceCorrelation(point, space)
+    println("Point-Space Correlation: ${if (isCorrelated) "Correlated" else "Not Correlated"}")
+
+    // Example confirmation of shared space
+    val isConfirmed = true // Example confirmation status
+    val confirmationStatus = app.confirmSharedSpaceConfirmation(isConfirmed)
+    println(confirmationStatus)
+}
