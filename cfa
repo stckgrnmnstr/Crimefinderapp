@@ -1,0 +1,47 @@
+import math
+
+# Define criminal data with simplified descriptions
+criminal_data = {
+    "John Doe": {"crime": "robbery", "location": {"latitude": 40.7128, "longitude": -74.0060}},
+    "Jane Smith": {"crime": "vandalism", "location": {"latitude": 34.0522, "longitude": -118.2437}},
+    # Add more criminal data as needed
+}
+
+# Simplified crime descriptions
+descriptions = {
+    "robbery": "Robbery at a store.",
+    "vandalism": "Cars vandalized in a parking lot.",
+    # Add more simplified descriptions as needed
+}
+
+# Function to calculate quantized points based on descriptions
+def calculate_quantized_points(description):
+    points = len(description.split())  # Number of words in the description
+    return points
+
+# Function to associate quantized points with names and locations
+def associate_quantized_points(names):
+    associated_names = []
+    for name in names:
+        if name in criminal_data:
+            crime = criminal_data[name]["crime"]
+            location = criminal_data[name]["location"]
+            description = descriptions[crime]
+            points_description = calculate_quantized_points(description)
+            points_location = math.sqrt(location["latitude"]**2 + location["longitude"]**2)  # Euclidean distance
+            associated_names.append((name, crime, f"{location['latitude']}, {location['longitude']}"))
+    return associated_names
+
+# Get user input for names (mass input)
+names_input = input("Enter names separated by commas: ").split(",")
+
+# Call the function to associate quantized points with the input names
+associated_names = associate_quantized_points(names_input)
+
+# Print the associated names in the desired format
+if associated_names:
+    print("Associated Names:")
+    for name, crime, location in associated_names:
+        print(f"Name: {name}, Crime: {crime}, Location: {location}")
+else:
+    print("No associated names found in criminal data.")
