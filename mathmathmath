@@ -1,0 +1,42 @@
+import kotlin.math.pow
+import kotlin.math.sqrt
+
+data class QuantizedPoint(
+    val name: String,
+    val energy: Double,
+    val space: Double
+)
+
+fun calculateDistance(point1: QuantizedPoint, point2: QuantizedPoint): Double {
+    return sqrt((point1.energy - point2.energy).pow(2) + (point1.space - point2.space).pow(2))
+}
+
+fun associateQuantizedPoints(points: List<QuantizedPoint>, distanceThreshold: Double): List<Pair<QuantizedPoint, QuantizedPoint>> {
+    val associations = mutableListOf<Pair<QuantizedPoint, QuantizedPoint>>()
+
+    for (i in points.indices) {
+        for (j in i + 1 until points.size) {
+            val distance = calculateDistance(points[i], points[j])
+            if (distance <= distanceThreshold) {
+                associations.add(points[i] to points[j])
+            }
+        }
+    }
+
+    return associations
+}
+
+fun main() {
+    val points = listOf(
+        QuantizedPoint("Point1", 100.0, 50.0),
+        QuantizedPoint("Point2", 150.0, 30.0),
+        QuantizedPoint("Point3", 90.0, 60.0),
+        QuantizedPoint("Point4", 120.0, 40.0)
+    )
+
+    val distanceThreshold = 20.0
+    val associations = associateQuantizedPoints(points, distanceThreshold)
+
+    println("Associations within a distance threshold of $distanceThreshold:")
+    associations.forEach { println("${it.first.name} - ${it.second.name}") }
+}
