@@ -1,0 +1,58 @@
+import kotlin.math.*
+
+fun main() {
+    // Example quantized points data
+    val quantizedPointsData = listOf(10, 20, 30, 40, 50)
+    val decryptionKey = 2
+
+    // Associate quantized points with decryption
+    val associatedPoints = associateQuantizedPoints(quantizedPointsData, decryptionKey)
+    println("Associated Points with Decryption: $associatedPoints")
+
+    // Calculate space dimension based on radius and quantum properties
+    val radius = 5.0
+    val spaceDimension = calculateSpaceDimension(radius)
+    println("Space Dimension: $spaceDimension")
+
+    // Calculate energy based on mass, speed of light, and quantum properties
+    val mass = 10.0
+    val speedOfLight = 3e8
+    val energy = calculateEnergy(mass, speedOfLight)
+    println("Energy: $energy")
+
+    // Calculate the Planck constant based on quantum properties
+    val planckConstant = calculatePlanckConstant()
+    println("Planck Constant: $planckConstant")
+
+    // Calculate the square root of -1
+    val imaginaryNumber = sqrt(-1.0)
+    println("Imaginary Number: $imaginaryNumber")
+
+    // Calculate the gravitational force between two masses
+    val mass1 = 100.0
+    val mass2 = 50.0
+    val distance = 10.0
+    val gravitationalForce = calculateGravitationalForce(mass1, mass2, distance)
+    println("Gravitational Force: $gravitationalForce")
+}
+
+fun associateQuantizedPoints(pointsData: List<Int>, decryptionKey: Int): List<Int> {
+    return pointsData.map { it * decryptionKey }
+}
+
+fun calculateSpaceDimension(radius: Double): Double {
+    return PI * radius.pow(2)
+}
+
+fun calculateEnergy(mass: Double, speedOfLight: Double): Double {
+    return mass * speedOfLight.pow(2)
+}
+
+fun calculatePlanckConstant(): Double {
+    return 6.62607015e-34 // Planck constant in Joule seconds
+}
+
+fun calculateGravitationalForce(mass1: Double, mass2: Double, distance: Double): Double {
+    val gravitationalConstant = 6.67430e-11 // Gravitational constant in m^3 kg^-1 s^-2
+    return gravitationalConstant * mass1 * mass2 / distance.pow(2)
+}
