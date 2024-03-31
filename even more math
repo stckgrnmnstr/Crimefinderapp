@@ -1,0 +1,8 @@
+fun calculate_pi_infinite_limit(x: Double): Double {
+    return (Math.PI.pow(1 / x) + x.pow(Math.PI / 10)) / 10
+}
+
+// Example usage
+val x_value = 1000.0
+val pi_infinite_limit_value = calculate_pi_infinite_limit(x_value)
+println("Infinite Limit Value for x = $x_value: $pi_infinite_limit_value")
