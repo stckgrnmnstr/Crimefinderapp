@@ -1,0 +1,20 @@
+# Define a function to check for the existence of a unique element in a set
+def check_unique_element(set_elements):
+    # Check if there is exactly one element in the set
+    if len(set_elements) == 1:
+        element = set_elements.pop()  # Get the unique element
+        if 'π' in element and '∞' in element:  # Check if the element contains π and ∞
+            return True  # Unique element with required properties found
+    return False  # Unique element with required properties not found or multiple elements exist
+
+# Example set containing elements
+elements_set = {'Element1 containing π and ∞', 'Element2 without required properties'}
+
+# Check for the existence of a unique element with specific properties
+result = check_unique_element(elements_set)
+
+# Print the result
+if result:
+    print("There exists a unique element in the set with both π and ∞.")
+else:
+    print("No unique element found with required properties in the set.")
