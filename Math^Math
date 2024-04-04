@@ -1,0 +1,24 @@
+import math
+
+# Define the variables
+m = 1
+c = 3e8
+i = complex(0, 1)
+
+# Equation: E = mc^2 (undefined)
+E_undefined = m * c**2
+
+# Equation: (-)E = mc^2 (functional potential)
+E_functional_potential = -m * c**2
+
+# Equation: E ≠ mc^2 (inequality expression)
+E_inequality_expression = E_undefined + 1  # Just an example of inequality
+
+# Equation: E = (-1)(mc)^2 (energy field equation)
+E_energy_field_equation = (-1) * (m * c)**2
+
+# Print the results
+print(f"E = mc^2 (undefined): {E_undefined}")
+print(f"(-)E = mc^2 (functional potential): {E_functional_potential}")
+print(f"E ≠ mc^2 (inequality expression): {E_inequality_expression}")
+print(f"E = (-1)(mc)^2 (energy field equation): {E_energy_field_equation}")
