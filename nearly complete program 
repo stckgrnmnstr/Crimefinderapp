@@ -1,0 +1,126 @@
+import math
+import time
+
+class QuantizedPoint:
+    def __init__(self, name, energy, space):
+        self.name = name
+        self.energy = energy
+        self.space = space
+
+def calculate_distance(point1, point2):
+    return math.sqrt((point1.energy - point2.energy) ** 2 + (point1.space - point2.space) ** 2)
+
+def find_associations(points, distance_threshold):
+    associations = []
+
+    for i, point1 in enumerate(points):
+        for point2 in points[i + 1:]:
+            distance = calculate_distance(point1, point2)
+            if distance <= distance_threshold:
+                associations.append((point1, point2))
+
+    return associations
+
+def evaluate_energy_equation(equation, m, c, r=1, i=1, l=1):
+    if equation == "E=mci²":
+        return m * c * i ** 2
+    elif equation == "E=(-1)(mci)²":
+        return -1 * (m * c * i) ** 2
+    elif equation == "E=mc²":
+        return m * c ** 2
+    else:
+        return None
+
+class CrimeDataGatherer:
+    def __init__(self):
+        self.crime_data = []
+        self.frequency = "2.5GHz"  # Initial frequency setting
+
+    def gather_data(self):
+        print("Gathering crime-related data...")
+        self.generate_frequency_bursts()
+        time.sleep(2)  # Simulate data gathering process
+        self.crime_data = [
+            {"name": "John Doe", "location": "Street A, City X", "description": "Theft"},
+            {"name": "Jane Smith", "location": "Street B, City Y", "description": "Assault"},
+            {"name": "Alice Johnson", "location": "Street C, City Z", "description": "Vandalism"}
+        ]
+        print("Data gathering complete.")
+
+    def process_data(self):
+        print("Processing gathered crime data...")
+        time.sleep(1)  # Simulate data processing
+        print("Crime data processing complete.")
+
+    def generate_frequency_bursts(self):
+        print("Generating frequency bursts while gathering data...")
+        for frequency in range(2500, 4411, 100):
+            print(f"Frequency burst: {frequency}MHz")
+            self.frequency = f"{frequency / 1000}GHz"
+            self.gather_data()
+            time.sleep(0.5)
+
+class CrimeDataAnalyzer:
+    def __init__(self):
+        self.data_gatherer = CrimeDataGatherer()
+
+    def search_crime_data(self):
+        self.data_gatherer.process_data()
+        print("Crime data search functionality:")
+        for crime in self.data_gatherer.crime_data:
+            print(f"- Name: {crime['name']}, Location: {crime['location']}, Description: {crime['description']}")
+
+def calculate_nested_exponential_limit(iterations):
+    nested_pi = math.pi
+    for _ in range(iterations):
+        nested_pi = math.pow(nested_pi, nested_pi)
+    return math.pow(nested_pi, 1.0 / 3)
+
+def main():
+    # Quantized points
+    points = [
+        QuantizedPoint("Point1", 100.0, 50.0),
+        QuantizedPoint("Point2", 150.0, 30.0),
+        QuantizedPoint("Point3", 90.0, 60.0),
+        QuantizedPoint("Point4", 120.0, 40.0)
+    ]
+
+    distance_threshold = 20.0
+    associations = find_associations(points, distance_threshold)
+
+    print("Associations within a distance threshold of", distance_threshold, ":")
+    for point1, point2 in associations:
+        print(point1.name, "-", point2.name)
+
+    # Nested exponential limit calculation
+    nested_iterations = 100000
+    pi_nested_limit_value = calculate_nested_exponential_limit(nested_iterations)
+    print("Nested Exponential Limit Value:", pi_nested_limit_value)
+
+    # Evaluate equations
+    m = 2
+    c = 3
+    r = 4
+    i = 5
+    l = 6
+
+    equations = [
+        "E=mci²",
+        "(-)E=mci²",
+        "E≠mci²",
+        "E=(-1)(mci)²",
+        "E≠imc",
+        "E=(-1)((λ^i)mc)²",
+        "E≠(imc)²",
+        "E=(-1)imc²",
+        "E≠imc²",
+        "E=(-1)((λ^i)(mc))²",
+        "E≠((i)(mc))²"
+    ]
+
+    for equation in equations:
+        result = evaluate_energy_equation(equation, m, c, r, i, l)
+        print(f"{equation}: {result}")
+
+if __name__ == "__main__":
+    main()
