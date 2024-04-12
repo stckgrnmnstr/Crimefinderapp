@@ -1,0 +1,54 @@
+import math
+
+class PlanetPotential:
+    def __init__(self, radius):
+        self.radius = radius
+
+    def calculate_longitude_latitude_potentials(self, num_longitudes, num_latitudes):
+        """
+        Calculate longitude and latitude potentials for the planet on an x, y, z plane.
+
+        Args:
+            num_longitudes (int): Number of longitudinal divisions.
+            num_latitudes (int): Number of latitudinal divisions.
+
+        Returns:
+            list: List of tuples representing (x, y, z) coordinates and their respective potentials.
+        """
+        potentials = []
+
+        for i in range(num_longitudes):
+            longitude = 2 * math.pi * i / num_longitudes
+            for j in range(num_latitudes):
+                latitude = math.pi * (j + 1) / (num_latitudes + 1)
+                x = self.radius * math.sin(latitude) * math.cos(longitude)
+                y = self.radius * math.sin(latitude) * math.sin(longitude)
+                z = self.radius * math.cos(latitude)
+                potential = self.calculate_potential(x, y, z)
+                potentials.append(((x, y, z), potential))
+
+        return potentials
+
+    def calculate_potential(self, x, y, z):
+        """
+        Calculate the potential at a given point (x, y, z).
+
+        Args:
+            x (float): X-coordinate.
+            y (float): Y-coordinate.
+            z (float): Z-coordinate.
+
+        Returns:
+            float: Potential at the given point.
+        """
+        # Example potential calculation
+        return x**2 + y**2 + z**2
+
+# Example usage
+planet = PlanetPotential(radius=6371)  # Earth's radius in kilometers
+longitudes = 10
+latitudes = 5
+potential_data = planet.calculate_longitude_latitude_potentials(longitudes, latitudes)
+print("Longitude and Latitude Potentials:")
+for data_point in potential_data:
+    print("Coordinates:", data_point[0], "Potential:", data_point[1])
