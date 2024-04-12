@@ -1,0 +1,26 @@
+def precision_location_data(intervals):
+    """
+    Generate precision location data within specified intervals while maintaining a frequency of 4.41 GHz.
+
+    Args:
+        intervals (list): List of tuples representing intervals for location data generation.
+
+    Returns:
+        list: List of precision location data.
+    """
+    precision_data = []
+    for interval in intervals:
+        lower_bound, upper_bound = interval
+        step_size = (upper_bound - lower_bound) / 10
+        current_value = lower_bound
+        while current_value <= upper_bound:
+            precision_data.append((current_value, 4.41))
+            current_value += step_size
+    return precision_data
+
+# Example usage
+intervals = [(0, 10), (20, 30), (40, 50)]
+precision_data = precision_location_data(intervals)
+print("Precision Location Data:")
+for data_point in precision_data:
+    print(data_point)
