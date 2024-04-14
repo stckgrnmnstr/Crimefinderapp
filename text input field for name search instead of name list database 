@@ -1,0 +1,9 @@
+# Function to get text input
+def get_input(prompt):
+    return input(prompt)
+
+# Get text input from the user
+user_input = get_input("Enter your text input: ")
+
+# Print the user input
+print("User Input:", user_input)
