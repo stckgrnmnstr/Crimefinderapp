@@ -1,0 +1,38 @@
+import math
+
+# Define variables
+i = 10  # Some imaginary unit
+m = 5  # Mass
+c = 3 * 10**8  # Speed of light (m/s)
+λ = 2  # Some other factor
+r = 1  # Radius of the circle
+
+# Calculate energy for each equation
+equations = [
+    ("E = -((λ^i)mc)^2", -((λ**i) * m * c) ** 2),
+    ("E = -imc^2", -i * m * c ** 2),
+    ("E = -((λ^i)(mc))^2", -((λ**i) * (m * c)) ** 2),
+    ("E = -m(λ^i)c^2", -m * (λ**i) * c ** 2),
+    ("E = -((λ^i)mc/(2πr))^2", -((λ**i) * m * c / (2 * math.pi * r)) ** 2),
+    ("E = mci² {undefined}", m * c * i ** 2),
+    ("(-)E = mci² {functional potential}", -m * c * i ** 2),
+    ("E ≠ mci² {inequality expression}", m * c * i ** 2 + 1),
+    ("E = (-1)(mci)² {energy field equation}", (-1) * (m * c * i) ** 2),
+    ("E ≠ imc", i * m * c + 1),
+    ("E = (-1)((λ^i)mc)²", (-1) * ((λ**i) * m * c) ** 2),
+    ("E ≠ (imc)²", i * m * c ** 2 + 1),
+    ("E = (-1)imc²", (-1) * i * m * c ** 2),
+    ("E ≠ imc²", i * m * c ** 2 + 1),
+    ("E = (-1)((λ^i)(mc))²", (-1) * ((λ**i) * (m * c)) ** 2),
+    ("E ≠ ((i)(mc))²", (i * m * c) ** 2 + 1),
+    ("E = (-1)m(λ^i)c²", (-1) * m * (λ**i) * c ** 2),
+    ("E ≠ mic²", m * i * c ** 2 + 1),
+    ("±E = (mc/(2πr))²", (m * c / (2 * math.pi * r)) ** 2),
+    ("E = (-1)((λ^i)mc/(2πr))²", (-1) * ((λ**i) * m * c / (2 * math.pi * r)) ** 2),
+    ("E = mc²", m * c ** 2),
+    ("E = (-1)(λ^i)", (-1) * (λ ** i))
+]
+
+# Print results
+for equation, result in equations:
+    print(equation + ":", result)
