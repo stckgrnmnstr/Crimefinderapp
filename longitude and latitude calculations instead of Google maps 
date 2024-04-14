@@ -1,0 +1,28 @@
+import math
+
+# Function to calculate longitude and latitude from XYZ coordinates
+def calculate_longitude_latitude(x, y, z):
+    # Calculate longitude
+    longitude = math.atan2(y, x)
+    
+    # Calculate latitude
+    r = math.sqrt(x**2 + y**2 + z**2)
+    latitude = math.asin(z / r)
+    
+    # Convert radians to degrees
+    longitude_deg = math.degrees(longitude)
+    latitude_deg = math.degrees(latitude)
+    
+    return longitude_deg, latitude_deg
+
+# Example coordinates
+x = 1
+y = 1
+z = 1
+
+# Calculate longitude and latitude
+longitude, latitude = calculate_longitude_latitude(x, y, z)
+
+# Print the result
+print("Longitude:", longitude)
+print("Latitude:", latitude)
