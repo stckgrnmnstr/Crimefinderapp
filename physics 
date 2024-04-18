@@ -1,0 +1,69 @@
+import math
+
+# Function for E ≠ imc
+def equation1(E, i, m, c):
+    return E != i * m * c
+
+# Function for E = (-1)((λ^i)mc)²
+def equation2(E, i, m, c):
+    return E == (-1) * ((math.pow(math.e, i) * m * c) ** 2)
+
+# Function for E ≠ (imc)²
+def equation3(E, i, m, c):
+    return E != (i * m * c) ** 2
+
+# Function for E = (-1)imc²
+def equation4(E, i, m, c):
+    return E == (-1) * i * m * c ** 2
+
+# Function for E ≠ imc²
+def equation5(E, i, m, c):
+    return E != i * m * c ** 2
+
+# Function for E = (-1)((λ^i)(mc))²
+def equation6(E, i, m, c):
+    return E == (-1) * ((math.pow(math.e, i) * m * c)) ** 2
+
+# Function for E ≠ ((i)(mc))²
+def equation7(E, i, m, c):
+    return E != ((i) * (m * c)) ** 2
+
+# Function for E = (-1)m(λ^i)c²
+def equation8(E, i, m, c):
+    return E == (-1) * m * (math.pow(math.e, i)) * c ** 2
+
+# Function for E ≠ mic²
+def equation9(E, i, m, c):
+    return E != m * i * c ** 2
+
+# Function for ±E = (mc/2πr)²
+def equation10(E, m, c, r):
+    return (E == (m * c / (2 * math.pi * r)) ** 2) or (E == -1 * (m * c / (2 * math.pi * r)) ** 2)
+
+# Function for E = mc²
+def equation11(E, m, c):
+    return E == m * c ** 2
+
+# Function for E = (-1)(λ^i)
+def equation12(E, i):
+    return E == (-1) * math.pow(math.e, i)
+
+# Test the equations
+E = 10
+i = 2
+m = 5
+c = 3 * 10**8
+r = 1
+
+print("Equation 1:", equation1(E, i, m, c))
+print("Equation 2:", equation2(E, i, m, c))
+print("Equation 3:", equation3(E, i, m, c))
+print("Equation 4:", equation4(E, i, m, c))
+print("Equation 5:", equation5(E, i, m, c))
+print("Equation 6:", equation6(E, i, m, c))
+print("Equation 7:", equation7(E, i, m, c))
+print("Equation 8:", equation8(E, i, m, c))
+print("Equation 9:", equation9(E, i, m, c))
+print("Equation 10:", equation10(E, m, c, r))
+print("Equation 11:", equation11(E, m, c))
+print("Equation 12:", equation12(E, i))
