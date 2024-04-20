@@ -1,0 +1,69 @@
+section .data
+
+; Define constants
+mc equ 1         ; For simplicity, assume mc = 1
+lambda equ 2     ; Similarly, assume lambda = 2
+r equ 3          ; Assume r = 3
+E equ 4          ; Result stored in E
+
+section .text
+global _start
+
+_start:
+
+; Calculate E = mc²
+mov eax, mc       ; Load mc into eax
+mul eax           ; Multiply eax by itself (mc * mc)
+mov ebx, eax      ; Store result in ebx (E)
+
+; Calculate E = -((λ^i)mc)^2
+mov eax, lambda   ; Load lambda into eax
+mov ebx, i        ; Load i into ebx
+imul eax, ebx     ; Multiply eax by ebx (lambda * i)
+mov ecx, mc       ; Load mc into ecx
+imul eax, ecx     ; Multiply eax by ecx ((lambda * i) * mc)
+mov ebx, eax      ; Store result in ebx (lambda * i * mc)
+imul ebx, ebx     ; Square the value in ebx
+
+; Calculate E = -imc^2
+mov eax, i        ; Load i into eax
+mov ebx, mc       ; Load mc into ebx
+imul ebx, ebx     ; Square the value in ebx
+imul eax, ebx     ; Multiply eax by ebx (i * mc^2)
+neg eax           ; Negate the result
+
+; Calculate E = -((λ^i)(mc))^2
+mov eax, lambda   ; Load lambda into eax
+mov ebx, i        ; Load i into ebx
+imul eax, ebx     ; Multiply eax by ebx (lambda * i)
+mov ecx, mc       ; Load mc into ecx
+imul eax, ecx     ; Multiply eax by ecx ((lambda * i) * mc)
+imul eax, eax     ; Square the value in eax
+neg eax           ; Negate the result
+
+; Calculate E = -m(λ^i)c^2
+mov eax, lambda   ; Load lambda into eax
+mov ebx, i        ; Load i into ebx
+imul eax, ebx     ; Multiply eax by ebx (lambda * i)
+mov ecx, mc       ; Load mc into ecx
+imul eax, ecx     ; Multiply eax by ecx ((lambda * i) * mc)
+mov ebx, mc       ; Load mc into ebx
+imul ebx, ebx     ; Square the value in ebx
+imul eax, ebx     ; Multiply eax by ebx (m * (lambda * i) * mc^2)
+neg eax           ; Negate the result
+
+; Calculate E = -((λ^i)mc/2πr)^2
+mov eax, lambda   ; Load lambda into eax
+mov ebx, i        ; Load i into ebx
+imul eax, ebx     ; Multiply eax by ebx (lambda * i)
+mov ecx, mc       ; Load mc into ecx
+imul eax, ecx     ; Multiply eax by ecx ((lambda * i) * mc)
+idiv dword [two_pi_r] ; Divide eax by 2πr
+imul eax, eax     ; Square the value in eax
+neg eax           ; Negate the result
+
+exit:
+mov [E], eax      ; Store the result in E
+mov eax, 1        ; System call for exit
+xor ebx, ebx      ; Exit code 0
+int 0x80          ; Call kernel
