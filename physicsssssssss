@@ -1,0 +1,10 @@
+def calculate_energy(lam, i):
+    E = (lam**i)**2
+    return E
+
+# Example usage
+lambda_value = 2  # Example value for λ
+i_value = 3       # Example value for i
+
+energy = calculate_energy(lambda_value, i_value)
+print(f"E = {energy}")
