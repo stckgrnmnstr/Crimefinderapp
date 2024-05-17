@@ -1,0 +1,26 @@
+dictionary = {
+    "plants": {
+        "rose": "A woody perennial flowering plant of the genus Rosa, in the family Rosaceae.",
+        "fern": "A flowerless plant that has feathery or leafy fronds and reproduces by spores released from the undersides of the fronds.",
+        # Add more plant terms here
+    },
+    "rocks": {
+        "granite": "A coarse-grained igneous rock composed chiefly of quartz, feldspar, and mica.",
+        "limestone": "A sedimentary rock consisting mainly of calcium that was deposited by the remains of marine animals.",
+        # Add more rock terms here
+    },
+    "minerals": {
+        "quartz": "A hard mineral consisting of silicon dioxide, found widely in igneous, metamorphic, and sedimentary rocks.",
+        "calcite": "A mineral consisting largely of calcium carbonate.",
+        # Add more mineral terms here
+    },
+    "objects": {
+        "chair": "A piece of furniture for one person to sit on, with a back, a seat, and sometimes armrests.",
+        "telescope": "An optical instrument designed to make distant objects appear nearer, containing an arrangement of lenses or mirrors.",
+        # Add more object terms here
+    }
+}
+
+# Example usage:
+print(dictionary["plants"]["rose"])  # Output: A woody perennial flowering plant of the genus Rosa, in the family Rosaceae.
+print(dictionary["rocks"]["granite"])  # Output: A coarse-grained igneous rock composed chiefly of quartz, feldspar, and mica.
