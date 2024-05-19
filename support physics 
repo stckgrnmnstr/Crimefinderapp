@@ -1,0 +1,22 @@
+def calculate_energy(imaginary_unit, mass, velocity):
+    """
+    Calculate energy using the equation E = imv^2.
+    
+    Args:
+    - imaginary_unit (complex): Imaginary unit (i)
+    - mass (float): Mass (kg)
+    - velocity (float): Velocity (m/s)
+    
+    Returns:
+    - energy (float): Energy (Joules)
+    """
+    energy = imaginary_unit * mass * velocity ** 2
+    return energy
+
+# Test the function with some example values
+i = 1j  # imaginary unit
+m = 10  # mass in kg
+v = 5   # velocity in m/s
+
+result = calculate_energy(i, m, v)
+print("Energy:", result, "Joules")
