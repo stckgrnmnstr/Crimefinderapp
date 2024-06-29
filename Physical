@@ -1,0 +1,101 @@
+import math
+
+# Equation functions
+def equation_not_imc(E, i, m, c):
+    return E != i * m * c
+
+def equation_neg_exp_imc_squared(E, i, m, c):
+    exp_i = math.pow(math.e, i)
+    return E == (-1) * ((exp_i * m * c) ** 2)
+
+def equation_not_imc_squared(E, i, m, c):
+    return E != (i * m * c) ** 2
+
+def equation_neg_imc_squared(E, i, m, c):
+    return E == (-1) * i * m * c ** 2
+
+def equation_not_imc_squared_2(E, i, m, c):
+    return E != i * m * c ** 2
+
+def equation_neg_exp_imc_squared_2(E, i, m, c):
+    exp_i = math.pow(math.e, i)
+    return E == (-1) * ((exp_i * m * c) ** 2)
+
+def equation_not_i_mc_squared(E, i, m, c):
+    return E != (i * (m * c)) ** 2
+
+def equation_not_neg_exp_mc_squared(E, i, m, c):
+    exp_i = math.pow(math.e, i)
+    return E != (-1) * m * exp_i * c ** 2
+
+def equation_not_mic_squared(E, i, m, c):
+    return E != m * i * c ** 2
+
+def equation_plus_minus_mc_2pi_r_squared(E, m, c, r):
+    term = (m * c / (2 * math.pi * r)) ** 2
+    return E == term or E == -term
+
+def equation_not_cim_squared(E, i, m, c):
+    return E != c * i * m ** 2
+
+def equation_not_c2_mi2(E, i, m, c):
+    return E != c ** 2 * m * i ** 2
+
+def equation_mc_squared(E, m, c):
+    return E == m * c ** 2
+
+def equation_neg_exp(E, i):
+    return E == (-1) * math.pow(math.e, i)
+
+def equation_combined(E, i, m, c, r):
+    exp_i = math.pow(math.e, i)
+    term1 = -((exp_i * m * c) ** 2)
+    term2 = -i * m * c ** 2
+    term3 = -((exp_i * m * c) ** 2)
+    term4 = -m * exp_i * c ** 2
+    term5 = -((exp_i * m * c / (2 * math.pi * r)) ** 2)
+    return E == term1 and E == term2 and E == term3 and E == term4 and E == term5
+
+def equation_summation(E, i, m, c):
+    exp_i = math.pow(math.e, i)
+    term1 = (-1) * ((exp_i * m * c) ** 2)
+    term2 = (-1) * i * m * c ** 2
+    term3 = m * c ** 2
+    term4 = (-1) * exp_i
+    return E == term1 + term2 + term3 + term4
+
+# Function to evaluate all equations using bitwise OR
+def evaluate_all_equations(E, i, m, c, r):
+    results = [
+        equation_not_imc(E, i, m, c),
+        equation_neg_exp_imc_squared(E, i, m, c),
+        equation_not_imc_squared(E, i, m, c),
+        equation_neg_imc_squared(E, i, m, c),
+        equation_not_imc_squared_2(E, i, m, c),
+        equation_neg_exp_imc_squared_2(E, i, m, c),
+        equation_not_i_mc_squared(E, i, m, c),
+        equation_not_neg_exp_mc_squared(E, i, m, c),
+        equation_not_mic_squared(E, i, m, c),
+        equation_plus_minus_mc_2pi_r_squared(E, m, c, r),
+        equation_not_cim_squared(E, i, m, c),
+        equation_not_c2_mi2(E, i, m, c),
+        equation_mc_squared(E, m, c),
+        equation_neg_exp(E, i),
+        equation_combined(E, i, m, c, r),
+        equation_summation(E, i, m, c)
+    ]
+    
+    combined_result = False
+    for result in results:
+        combined_result |= result
+    
+    return combined_result
+
+# Test the equations
+E = 10
+i = 2
+m = 5
+c = 3 * 10**8
+r = 1
+
+print("Overall evaluation:", evaluate_all_equations(E, i, m, c, r))
