@@ -1,0 +1,40 @@
+// Define functions for different dimensions
+
+// Function for 3-dimensional context
+fun f_d3(x: Int): Int {
+    return if (x == 3) 1 else 0
+}
+
+// Function for 0-dimensional context (point)
+fun f_d0(x: Int): Int {
+    return if (x * x == 0) 1 else 0
+}
+
+// Function for 7-dimensional context
+fun f_d7(x: Int): Int {
+    return if (x * x == 0) 1 else 0
+}
+
+// Function for 10-dimensional context, returning infinity
+fun f_d10(): Double {
+    return Double.POSITIVE_INFINITY
+}
+
+// Function to call all the defined functions and print results
+fun callFunctions() {
+    val result_d3 = f_d3(3)
+    val result_d0 = f_d0(0)
+    val result_d7 = f_d7(0)
+    val result_d10 = f_d10()
+
+    // Printing the results
+    println("Result of f{d3}|3=1: $result_d3")
+    println("Result of f{d0}|0*0=1: $result_d0")
+    println("Result of f{d7}|0*0=1: $result_d7")
+    println("Result of f{d|10|}|∞: $result_d10")
+}
+
+// Main function to execute the calls
+fun main() {
+    callFunctions()
+}
