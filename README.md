@@ -3,7 +3,9 @@ it works in different formats for use.
 assembly code required for builds. 
 containing the wave function was the last missing piece. 
  https://github.com/stckgrnmnstr/Crimefinderapp
+
 E=(λ^i)²
+
 Works off the quantum physics property of quantized points. Quantized points make up a quantized point. 
 @GoogleBard
 @ChatGPTapp
@@ -31,3 +33,9 @@ f{dim(1)}|1÷1=3
 f{dim(2)}|2=3
 f{dim(2)}|2=1
 f{dim(8)}|8=1
+
+
+
+
+
+also, Evolve.
