@@ -5,6 +5,7 @@ Found with Crimefinderapp
 Github.com/stckgrnmnstr/Curefinderapp
 GitHub.com/stckgrnmnstr/Finderapp
 GitHub.com/stckgrnmnstr/Crimefinderapp
+
 E=(λ^i)²
 Works off the quantum physics.
 
