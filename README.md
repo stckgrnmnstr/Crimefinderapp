@@ -1,3 +1,11 @@
+Viral Vector RDrvSN202LCG1.0 (HE-Bl104) Batch No.IM2233-001 22 Dec. 2022 Senti Biosciences vial no. 126 For R&D only
+Lab leak South San Francisco 
+@GermanyUN @NATO @WHO @CBSNews @ABC
+Found with Crimefinderapp 
+ github.com/stckgrnmnstr/C…
+E=(λ^i)²
+Works off the quantum physics.
+
 words. words to read.
 it works in different formats for use. 
 assembly code required for builds. 
@@ -7,9 +15,7 @@ containing the wave function was the last missing piece.
 E=(λ^i)²
 
 Works off the quantum physics property of quantized points. Quantized points make up a quantized point. 
-@GoogleBard
-@ChatGPTapp
-@MSFTCopilot
+
 Find unknown criminals and evidence by their namesake and description.
 Evidence. Individuals locations.
 
@@ -35,7 +41,3 @@ f{dim(2)}|2=1
 f{dim(8)}|8=1
 
 
-
-
-
-also, Evolve.
