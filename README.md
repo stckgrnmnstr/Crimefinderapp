@@ -1,8 +1,10 @@
 Viral Vector RDrvSN202LCG1.0 (HE-Bl104) Batch No.IM2233-001 22 Dec. 2022 Senti Biosciences vial no. 126 For R&D only
 Lab leak South San Francisco 
-@GermanyUN @NATO @WHO @CBSNews @ABC
+
 Found with Crimefinderapp 
- github.com/stckgrnmnstr/C…
+Github.com/stckgrnmnstr/Curefinderapp
+GitHub.com/stckgrnmnstr/Finderapp
+GitHub.com/stckgrnmnstr/Crimefinderapp
 E=(λ^i)²
 Works off the quantum physics.
 
