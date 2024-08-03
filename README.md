@@ -1,3 +1,24 @@
+The contents of the code are completed. The physics portion was the crucial piece. Use portions needed, required or desired to build your own. The code portions are detached and may contain errors and typos. The physics equations being what was important.
+
+E≠imc
+E=(-1)((λ^i)mc)²
+E≠(imc)²
+E=(-1)imc²
+E≠imc²
+E=(-1)imc²
+E=(-1)((λ^i)(mc))²
+E≠((i)(mc))²
+E≠(-1)m(λ^i)c²
+E≠mic²
+±E=(mc/2πr)²
+E≠cim²
+E≠c²mi²
+E=mc²
+E=(-1)(λ^i)
+E=(λ^i)²
+
+
+
 Viral Vector RDrvSN202LCG1.0 (HE-Bl104) Batch No.IM2233-001 22 Dec. 2022 Senti Biosciences vial no. 126 For R&D only
 Lab leak South San Francisco 
 
