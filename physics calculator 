@@ -1,0 +1,20 @@
+def calculate_energy(m, c, r, lam, i):
+  """Calculates energy based on different formulas.
+
+  Args:
+    m: Mass.
+    c: Speed of light.
+    r: Radius.
+    lam: Wavelength.
+    i: Imaginary unit.
+
+  Returns:
+    A dictionary of calculated energies based on different formulas.
+  """
+
+  E1 = m * c**2
+  E2 = (lam**i)**2
+  E3 = (m * c) / (2 * np.pi * r)**2
+  # ... other equations
+
+  return {'E1': E1, 'E2': E2, 'E3': E3, ...}
