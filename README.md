@@ -2,6 +2,7 @@
 
 The code is complete, with the physics portion being the crucial piece. Use the necessary, required, or desired portions to build your own. The code segments are detached and may contain errors and typos. The physics equations are what matter.
 
+No release package planned or intended; more "applications" are "laid-out" in the "issues" section.
 
 Viral Vector RDrvSN202LCG1.0 (HE-Bl104)
 
