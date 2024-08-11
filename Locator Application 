@@ -1,0 +1,114 @@
+import math
+
+def locator_application():
+  # Define the reference point
+  x0 = 0
+  y0 = 0
+  z0 = 0
+
+  # Define the dimensions of the reference point
+  d3 = 1
+  d0 = 1
+  d7 = 1
+  d10 = float('inf')
+  d1 = 1
+  d2 = 1
+  d8 = 1
+  d6 = 1
+  d9 = 1
+  d5 = 1
+  d4 = 1
+
+  # Calculate the dimensions of the point (x, y, z)
+  x = x0 + d3
+  y = y0 + d1
+  z = z0 + d7
+
+  # Print the calculated dimensions
+  print("x: " + str(x))
+  print("y: " + str(y))
+  print("z: " + str(z))
+
+  # Define the energy equations
+  E = (math.pow(λ, i))**2
+  E2 = (-1)*((math.pow(λ, i))*m*c)**2
+  E3 = (math.pow(λ, i))**2
+  E4 = E >= 1
+
+  # Print the energy equations
+  print("E: " + str(E))
+  print("E2: " + str(E2))
+  print("E3: " + str(E3))
+  print("E4: " + str(E4))
+
+  # Define the dimension equations
+  fd3 = 1
+  fd0 = 1
+  fd7 = 1
+  fd10 = float('inf')
+  fd1 = 1
+  fd2 = 1
+  fd8 = 1
+  fd6 = 1
+  fd9 = 1
+  fd5 = 1
+  fd4 = 1
+
+  # Print the dimension equations
+  print("fd3: " + str(fd3))
+  print("fd0: " + str(fd0))
+  print("fd7: " + str(fd7))
+  print("fd10: " + str(fd10))
+  print("fd1: " + str(fd1))
+  print("fd2: " + str(fd2))
+  print("fd8: " + str(fd8))
+  print("fd6: " + str(fd6))
+  print("fd9: " + str(fd9))
+  print("fd5: " + str(fd5))
+  print("fd4: " + str(fd4))
+
+  # Define the Curefinderapp issue
+  curefinderapp = E2
+
+  # Print the Curefinderapp issue
+  print("Curefinderapp: " + str(curefinderapp))
+
+  # Define the Finderapp issue
+  finderapp = E3
+
+  # Print the Finderapp issue
+  print("Finderapp: " + str(finderapp))
+
+  # Define the Locator Application
+  locatorapp = x + y + z
+
+  # Print the Locator Application
+  print("Locator Application: " + str(locatorapp))
+
+  # Define the dimension equations
+  f_dim_0 = 1
+  f_dim_7 = 1
+  f_dim_10 = float('inf')
+  f_dim_3 = 1
+  f_dim_1 = 1
+  f_dim_2 = 1
+  f_dim_8 = 1
+  f_dim_6 = 1
+  f_dim_9 = 1
+  f_dim_5 = 1
+  f_dim_4 = 1
+
+  # Print the dimension equations
+  print("f_dim_0: " + str(f_dim_0))
+  print("f_dim_7: " + str(f_dim_7))
+  print("f_dim_10: " + str(f_dim_10))
+  print("f_dim_3: " + str(f_dim_3))
+  print("f_dim_1: " + str(f_dim_1))
+  print("f_dim_2: " + str(f_dim_2))
+  print("f_dim_8: " + str(f_dim_8))
+  print("f_dim_6: " + str(f_dim_6))
+  print("f_dim_9: " + str(f_dim_9))
+  print("f_dim_5: " + str(f_dim_5))
+  print("f_dim_4: " + str(f_dim_4))
+
+locator_application()
