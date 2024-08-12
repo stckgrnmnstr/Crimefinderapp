@@ -33,9 +33,13 @@ Cures, finding, and security software.
 Undefined, Inequality and Energy expressions:
 
 E≠imc {undefined inequality}
+
 E=(-1)((λ^i)mc)² {undefined}
+
 E≠(-1)((λ^i)mc)² {inequality}
+
 E=((λ^i)mc)² {energy expression}
+
 
 E≠(imc)²
 E=(-1)imc²
