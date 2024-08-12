@@ -1,21 +1,8 @@
 
 
-The code is complete, with the physics portion being the crucial piece. Use the necessary, required, or desired portions to build your own. The code segments are detached and may contain errors and typos. The physics equations are what matter.
+The code is complete, with the physics portion being the crucial piece. Use the necessary, required, or desired portions to build your own. The code segments are detached and may contain errors and typos. The physics equations are what was important; analysis of the quantized point. Translation of data into physical object representations is a method or approach that's possible or isolating the finite exponential ends, including the absolute middle, of a quantized point. Mapping it to a space to reference is also possible.
 
 No release package planned or intended; more "applications" are "laid-out" in the "issues" section.
-
-Viral Vector RDrvSN202LCG1.0 (HE-Bl104)
-
-Batch No. IM2233-001
-22 Dec. 2022
-Senti Biosciences vial no. 126
-For R&D only
-Lab leak South San Francisco
-//Found with Crimefinderapp//
-
-Crimefinderapp GitHub
-Curefinderapp GitHub
-Finderapp GitHub
 
 
 Words to read:
@@ -43,9 +30,13 @@ Overall:
 
 Cures, finding, and security software.
 
-E=(λ^i)²
-E≠imc
-E=(-1)((λ^i)mc)²
+Undefined, Inequality and Energy expressions:
+
+E≠imc {undefined inequality}
+E=(-1)((λ^i)mc)² {undefined}
+E≠(-1)((λ^i)mc)² {inequality}
+E=((λ^i)mc)² {energy expression}
+
 E≠(imc)²
 E=(-1)imc²
 E≠imc²
