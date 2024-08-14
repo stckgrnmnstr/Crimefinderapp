@@ -1,4 +1,4 @@
-
+Check Contract!
 
 The code is complete, with the physics portion being the crucial piece. Use the necessary, required, or desired portions to build your own. The code segments are detached and may contain errors and typos. The physics equations are what was important; analysis of the quantized point. Translation of carbon imprint data into physical object representations is a method or approach that's possible or isolating the finite exponential ends, including the absolute middle, of a quantized point. Mapping it to a space to reference is also possible.
 
@@ -56,5 +56,23 @@ E=mc²
 E=(-1)(λ^i)
 E=(λ^i)²
 
-
-
+f{dim(x)}|x=y 
+f{dim(1)}|1=3 
+f{dim(3)}|3=1
+f{dim(x)}|x÷x=y
+f{dim(x)}|x≥∞
+f{dim(x)}|x=y
+f{dim(0)}|0*0=1
+f{dim(7)}|0*0=1
+f{dim(10)}|10≥∞
+f{dim(3)}|1=3
+f{dim(1)}|1÷1=3
+f{dim(2)}|2=3
+f{dim(2)}|2=1
+f{dim(8)}|8=1
+f{dim(6)}|6=1
+f{dim(9)}|9=1
+f{dim(5)}|5=1
+f{dim(5)}|5=π
+f{dim(5)}|5=∞
+f{dim(5)}|5≥∞
