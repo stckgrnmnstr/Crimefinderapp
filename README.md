@@ -27,6 +27,7 @@ Finderapp:
 Found the exponents correlating to several random objects.
 
 "Ten Steps"Application:
+
  Ten Steps To Truth 
 
 If you tell a lie you will not remain or regain the space that the truth is designated in.
