@@ -26,6 +26,24 @@ Finderapp:
 
 Found the exponents correlating to several random objects.
 
+"Ten Steps"Application:
+ Ten Steps To Truth 
+
+If you tell a lie you will not remain or regain the space that the truth is designated in.
+The truth "markers" allocate to one space. The lie "markers" spiral outside of the space.
+
+ * Say a truth out loud; ex. 2+2=4
+ * Take 10 steps and put a marker on the floor.
+ * Repeat until you are satisfied
+ * Tell a lie; ex. 2+2=67
+ * Take 10 steps and put markers on the floor until satisfied
+
+This provides a noticeable effect where you can see the markers for the truth gathering in the same space and the markers for the lies trialing away from the space.
+
+The psychological factors are on the outside and therefore rely on the average length of a step. if you attempt to disrupt the process it can take a micron length and require a microscope to measure the unique identifiers of eyeballs, fingerprints and toe prints.
+
+
+
 Overall:
 
 Cures, finding, and security software.
