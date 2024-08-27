@@ -53,11 +53,11 @@ Undefined, Inequality and Energy expressions:
 
 E≠imc {undefined inequality}
 
-E=(-1)((λ^i)mc)² {undefined}
+E=(-1)((λ^i)mc)² {energy equation}
 
-E≠(-1)((λ^i)mc)² {inequality}
+E≠((λ^i)mc)² {inequality}
 
-E=((λ^i)mc)² {energy expression}
+E=((λ^i)mc)² {undefined expression}
 
 
 E≠(imc)²
