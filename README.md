@@ -59,74 +59,71 @@ E≠((λ^i)mc)² {inequality}
 
 E=((λ^i)mc)² {undefined expression}
 
+E≠(imc)² {inequality expression}
 
-E≠(imc)²
+E=(-1)imc²{energy expression}
 
-E=(-1)imc²
+E≠imc²{inequality expression}
 
-E≠imc²
+E=(-1)imc²{energy expression}
 
-E=(-1)imc²
+E=(-1)((λ^i)(mc))² {energy expression}
 
-E=(-1)((λ^i)(mc))²
+E≠((i)(mc))² {inequality expression}
 
-E≠((i)(mc))²
+E=(-1)m(λ^i)c² {energy expression}
 
-E≠(-1)m(λ^i)c²
+E≠mic² {inequality expression}
 
-E≠mic²
+E=(mc/2πr)² {energy expression}
 
-E=(mc/2πr)²
+E=mc²/2πr² {energy expression}
 
-E=mc²/2πr²
+E≠cim² {inequality expression}
 
-E≠cim²
+E≠c²mi² {inequality expression}
 
-E≠c²mi²
+E=mc² {energy expression}
 
-E=mc²
+E=(-1)(λ^i) {energy expression}
 
-E=(-1)(λ^i)
+E≠(λ^i)² {inequality expression}
 
-E=(λ^i)²
-
+Dimension Equations:
 
 f{dim(x)}|x÷x=y
-
 f{dim(x)}|x≥∞
-
 f{dim(x)}|x=y
-
-f{dim(1)}|1÷1=1
-
+f{dim(3)}|x=y
+f{dim(1)}|x÷x=y
 f{dim(0)}|0*0=1
-
 f{dim(7)}|0*0=1
-
 f{dim(10)}|10≥∞
-
 f{dim(3)}|1=3
-
 f{dim(1)}|1÷1=3
-
-f{dim(2)}|2=3
-
-f{dim(2)}|2=1
-
 f{dim(8)}|8=1
-
+f{(dim(4)}|4=1
 f{dim(6)}|6=1
-
 f{dim(9)}|9=1
-
 f{dim(5)}|5=1
-
 f{dim(5)}|5=π
-
+f{dim(2)}|2=1
+f{dim(2)}|2=2
+f{dim(2)}|2=3
+f{dim(2)}|2=∞
+f{dim(2)}|2=0
 f{dim(5)}|5=∞
-
-f{dim(5)}|5≥∞
-
-f{dim(10)}|10=1
-
-f{dim(10)}|10=0
+f{dim(1)}|1=∞
+f{dim(3)}|3=∞
+f{dim(4)}|0=∞
+f{dim(4)}|1=∞
+f{dim(4)}|2=∞
+f{dim(4)}|3=∞
+f{dim(4)}|4=∞
+f{dim(4)}|5=∞
+f{dim(4)}|6=∞
+f{dim(4)}|7=∞
+f{dim(4)}|8=∞
+f{dim(4)}|9=∞
+f{dim(4)}|10=∞
+f{dim(4)}|∞=∞
