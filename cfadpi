@@ -1,0 +1,13 @@
+import pandas as pd
+import json
+
+def convert_csv_to_json(csv_file_path, json_file_path):
+    # Load CSV file
+    df = pd.read_csv(csv_file_path)
+    # Convert to JSON
+    data = df.to_dict(orient='records')
+    with open(json_file_path, 'w') as json_file:
+        json.dump(data, json_file, indent=4)
+
+# Example usage
+convert_csv_to_json('crime_data.csv', 'crime_data.json')
