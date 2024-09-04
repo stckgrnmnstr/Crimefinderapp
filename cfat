@@ -1,0 +1,18 @@
+from transformers import GPT3Tokenizer, GPT3Model
+
+def process_query(query, data):
+    # Load GPT-3 model
+    model = GPT3Model.from_pretrained('gpt3-model')
+    tokenizer = GPT3Tokenizer.from_pretrained('gpt3-tokenizer')
+    
+    # Encode and process query
+    inputs = tokenizer.encode(query, return_tensors='pt')
+    outputs = model(inputs)
+    
+    # Process outputs and search data
+    # ... Implement logic to search through 'data' based on 'outputs'
+    
+    return results
+
+# Example usage
+results = process_query('Find recent crimes in downtown', 'crime_data.json')
