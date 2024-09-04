@@ -1,0 +1,20 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+def generate_report(data_path, output_path):
+    # Load data
+    df = pd.read_json(data_path)
+    
+    # Generate summary statistics
+    summary = df.describe()
+    
+    # Save summary to file
+    with open(output_path, 'w') as file:
+        file.write(summary.to_string())
+    
+    # Example visualization
+    df.plot(kind='scatter', x='feature1', y='feature2')
+    plt.savefig('scatter_plot.png')
+
+# Example usage
+generate_report('crime_data.json', 'report_summary.txt')
