@@ -1,0 +1,23 @@
+import pickle
+from sklearn.ensemble import RandomForestClassifier
+import pandas as pd
+
+def retrain_model(new_data_path, model_path):
+    # Load new data
+    df = pd.read_json(new_data_path)
+    X = df[['feature1', 'feature2']]  # Replace with relevant features
+    y = df['target']  # Replace with target variable
+    
+    # Load existing model
+    with open(model_path, 'rb') as model_file:
+        model = pickle.load(model_file)
+    
+    # Retrain model
+    model.fit(X, y)
+    
+    # Save updated model
+    with open(model_path, 'wb') as model_file:
+        pickle.dump(model, model_file)
+
+# Example usage
+retrain_model('new_crime_data.json', 'model.pkl')
