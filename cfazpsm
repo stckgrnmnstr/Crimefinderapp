@@ -1,0 +1,21 @@
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+# Example grid size
+x = np.linspace(-1, 1, 50)
+y = np.linspace(-1, 1, 50)
+z = np.linspace(-1, 1, 50)
+X, Y, Z = np.meshgrid(x, y, z)
+
+# Example function for spatial mapping
+def spatial_function(X, Y, Z):
+    return np.sin(np.pi * X) * np.cos(np.pi * Y) * np.sin(np.pi * Z)
+
+# Compute spatial data
+data = spatial_function(X, Y, Z)
+
+# Plot a 3D slice
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ax.contour3D(X[:, :, 25], Y[:, :, 25], data[:, :, 25], 50)
+plt.show()
