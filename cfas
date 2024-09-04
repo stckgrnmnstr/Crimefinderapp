@@ -1,0 +1,23 @@
+from cryptography.fernet import Fernet
+
+def generate_key():
+    key = Fernet.generate_key()
+    with open('secret.key', 'wb') as key_file:
+        key_file.write(key)
+
+def encrypt_data(file_path):
+    with open('secret.key', 'rb') as key_file:
+        key = key_file.read()
+    fernet = Fernet(key)
+    
+    with open(file_path, 'rb') as file:
+        data = file.read()
+    
+    encrypted_data = fernet.encrypt(data)
+    
+    with open(file_path + '.enc', 'wb') as file:
+        file.write(encrypted_data)
+
+# Example usage
+generate_key()
+encrypt_data('crime_data.json')
