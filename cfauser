@@ -1,0 +1,13 @@
+def filter_crime_data(crime_data, crime_type=None, location=None):
+    df = pd.DataFrame(crime_data)
+    
+    if crime_type:
+        df = df[df['crime_type'] == crime_type]
+    if location:
+        df = df[df['location'] == location]
+    
+    return df
+
+# Example usage
+filtered_data = filter_crime_data(crime_data, crime_type='theft', location='downtown')
+print(filtered_data)
