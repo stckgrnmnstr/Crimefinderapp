@@ -1,0 +1,32 @@
+def polygon_to_description(polygon_points):
+    """Generate a description of a polygon based on its vertices."""
+    descriptions = []
+    
+    # Generate a description of the vertices
+    descriptions.append(f"Polygon with {len(polygon_points) - 1} vertices:")
+    for i, point in enumerate(polygon_points[:-1]):
+        descriptions.append(f"Vertex {i + 1}: {point}")
+    
+    # Generate a description of the edges
+    descriptions.append("Edges:")
+    for i in range(len(polygon_points) - 1):
+        start_point = polygon_points[i]
+        end_point = polygon_points[i + 1]
+        descriptions.append(f"Edge {i + 1}: from {start_point} to {end_point}")
+    
+    # Join all descriptions into a single string
+    description_text = "\n".join(descriptions)
+    return description_text
+
+def main():
+    # Example polygon points
+    polygon_points = [(1, 1), (2, 3), (4, 3), (5, 1), (1, 1)]  # Ensure the polygon is closed
+    
+    # Generate description
+    description = polygon_to_description(polygon_points)
+    
+    # Print description
+    print(description)
+
+if __name__ == "__main__":
+    main()
