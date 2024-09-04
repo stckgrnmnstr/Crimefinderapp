@@ -1,0 +1,68 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+def load_data(csv_file_path):
+    """Load carbon emission data from a CSV file."""
+    df = pd.read_csv(csv_file_path)
+    return df
+
+def calculate_overlaps(df):
+    """Calculate overlapping emission points based on atomic weight and emission value."""
+    atomic_weights = df['atomic_weight'].values
+    emissions = df['emission_value'].values
+    
+    # Normalize emission values for comparison
+    normalized_emissions = (emissions - np.min(emissions)) / (np.max(emissions) - np.min(emissions))
+    
+    # Define a threshold for overlap
+    threshold = 0.5
+    overlapping_points = [(aw, em) for aw, em in zip(atomic_weights, normalized_emissions) if em > threshold]
+    
+    return overlapping_points
+
+def visualize_points(points):
+    """Visualize the overlapping points in a 2D scatter plot."""
+    atomic_weights, emissions = zip(*points)
+    
+    plt.scatter(atomic_weights, emissions, c='blue', label='Overlapping Points')
+    plt.xlabel('Atomic Weight')
+    plt.ylabel('Normalized Emission Value')
+    plt.title('Carbon Emission Overlapping Points')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+def visualize_3d_points(points):
+    """Visualize the overlapping points in a 3D scatter plot."""
+    atomic_weights, emissions, extra_dimension = zip(*points)  # Assuming 3rd dimension data
+    
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    ax.scatter(atomic_weights, emissions, extra_dimension, c='green', label='3D Overlapping Points')
+    
+    ax.set_xlabel('Atomic Weight')
+    ax.set_ylabel('Normalized Emission Value')
+    ax.set_zlabel('Extra Dimension')
+    ax.set_title('3D Mapping of Carbon Emission Points')
+    ax.legend()
+    plt.show()
+
+def main():
+    # Load data
+    csv_file_path = 'carbon_emissions.csv'  # Path to your CSV file
+    data = load_data(csv_file_path)
+    
+    # Calculate overlaps
+    overlapping_points = calculate_overlaps(data)
+    
+    # Visualize 2D points
+    visualize_points(overlapping_points)
+    
+    # Add extra dimension for 3D visualization (example)
+    extra_points = [(aw, em, np.sin(aw)) for aw, em in overlapping_points]  # Dummy extra dimension
+    visualize_3d_points(extra_points)
+
+if __name__ == "__main__":
+    main()
