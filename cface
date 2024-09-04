@@ -1,0 +1,16 @@
+import numpy as np
+from scipy.signal import find_peaks
+
+# Example data: Spectral data of carbon emissions
+wavelengths = np.linspace(400, 700, 300)  # Wavelength range from 400 to 700 nm
+intensities = np.random.random(300)  # Simulated intensity data
+
+# Find peaks in the spectral data
+peaks, _ = find_peaks(intensities, height=0.5)
+
+# Extract peak wavelengths and intensities
+peak_wavelengths = wavelengths[peaks]
+peak_intensities = intensities[peaks]
+
+print("Peak Wavelengths:", peak_wavelengths)
+print("Peak Intensities:", peak_intensities)
