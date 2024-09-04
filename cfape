@@ -1,0 +1,67 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.spatial import ConvexHull
+
+def load_data(csv_file_path):
+    """Load carbon emission data from a CSV file."""
+    df = pd.read_csv(csv_file_path)
+    return df
+
+def calculate_overlapping_points(df):
+    """Calculate overlapping emission points based on atomic weight and emission value."""
+    atomic_weights = df['atomic_weight'].values
+    emissions = df['emission_value'].values
+    
+    # Normalize emission values for comparison
+    normalized_emissions = (emissions - np.min(emissions)) / (np.max(emissions) - np.min(emissions))
+    
+    # Define a threshold for overlap
+    threshold = 0.5
+    overlapping_points = [(aw, em) for aw, em in zip(atomic_weights, normalized_emissions) if em > threshold]
+    
+    return np.array(overlapping_points)
+
+def extrapolate_polygon_edges(points):
+    """Extrapolate the polygon edges using Convex Hull."""
+    if len(points) < 3:
+        raise ValueError("At least 3 points are required to form a polygon.")
+    
+    hull = ConvexHull(points)
+    edges = []
+    for simplex in hull.simplices:
+        edges.append((points[simplex[0]], points[simplex[1]]))
+    
+    return edges
+
+def plot_polygon_edges(points, edges):
+    """Plot the polygon edges based on the extrapolated edges."""
+    plt.figure()
+    plt.scatter(points[:, 0], points[:, 1], color='blue', label='Overlapping Points')
+    
+    for edge in edges:
+        plt.plot([edge[0][0], edge[1][0]], [edge[0][1], edge[1][1]], 'r-')
+    
+    plt.xlabel('Atomic Weight')
+    plt.ylabel('Normalized Emission Value')
+    plt.title('Polygon Edges Extrapolation of Carbon Emission Points')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+def main():
+    # Load data
+    csv_file_path = 'carbon_emissions.csv'  # Path to your CSV file
+    data = load_data(csv_file_path)
+    
+    # Calculate overlapping points
+    overlapping_points = calculate_overlapping_points(data)
+    
+    # Extrapolate polygon edges
+    edges = extrapolate_polygon_edges(overlapping_points)
+    
+    # Plot the results
+    plot_polygon_edges(overlapping_points, edges)
+
+if __name__ == "__main__":
+    main()
