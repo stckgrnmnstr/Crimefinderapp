@@ -1,0 +1,59 @@
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib.patches import Polygon
+from matplotlib.collections import PatchCollection
+
+def create_polygon_from_edges(edges):
+    """Create a polygon from a list of edges."""
+    # Extract all unique points from edges
+    points = set()
+    for edge in edges:
+        points.update(edge)
+    
+    # Sort points to form a polygon (assuming the edges form a closed loop)
+    sorted_points = sorted(points, key=lambda p: (p[0], p[1]))
+    
+    # Reorder points based on edges to ensure they form a closed polygon
+    polygon_points = [sorted_points.pop(0)]
+    while sorted_points:
+        for point in sorted_points:
+            if (polygon_points[-1], point) in edges or (point, polygon_points[-1]) in edges:
+                polygon_points.append(point)
+                sorted_points.remove(point)
+                break
+    
+    # Close the polygon loop by connecting the last point to the first
+    polygon_points.append(polygon_points[0])
+    
+    return polygon_points
+
+def plot_polygon(polygon_points):
+    """Plot the polygon based on the list of points."""
+    fig, ax = plt.subplots()
+    polygon = Polygon(polygon_points, closed=True, edgecolor='r', facecolor='none', linestyle='-', linewidth=2)
+    
+    ax.add_patch(polygon)
+    ax.plot(*zip(*polygon_points), marker='o', color='b', ls='')
+    
+    ax.set_xlabel('X')
+    ax.set_ylabel('Y')
+    ax.set_title('Polygon Created from Edges')
+    ax.grid(True)
+    
+    plt.show()
+
+def main():
+    # Example edges: each edge is a tuple of two points
+    edges = [((1, 1), (2, 3)),
+             ((2, 3), (4, 3)),
+             ((4, 3), (5, 1)),
+             ((5, 1), (1, 1))]
+    
+    # Create polygon from edges
+    polygon_points = create_polygon_from_edges(edges)
+    
+    # Plot the polygon
+    plot_polygon(polygon_points)
+
+if __name__ == "__main__":
+    main()
