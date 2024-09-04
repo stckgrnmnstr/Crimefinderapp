@@ -1,0 +1,28 @@
+from sklearn.ensemble import RandomForestClassifier
+import pandas as pd
+import json
+
+def train_predictive_model(data_path):
+    # Load data
+    df = pd.read_json(data_path)
+    X = df[['feature1', 'feature2']]  # Replace with relevant features
+    y = df['target']  # Replace with target variable
+    
+    # Train model
+    model = RandomForestClassifier()
+    model.fit(X, y)
+    
+    # Save model
+    with open('model.pkl', 'wb') as model_file:
+        pickle.dump(model, model_file)
+
+def predict(model_path, input_data):
+    with open(model_path, 'rb') as model_file:
+        model = pickle.load(model_file)
+    
+    # Predict
+    prediction = model.predict([input_data])
+    return prediction
+
+# Example usage
+train_predictive_model('crime_data.json')
