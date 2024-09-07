@@ -1,24 +1,53 @@
-import math
+import sympy as sp
 
-# Define the variables
-m = 1
-c = 3e8
-i = complex(0, 1)
+# Define symbolic variables
+λ, i, m, c, r = sp.symbols('λ i m c r')
 
-# Equation: E = mc^2 (undefined)
-E_undefined = m * c**2
+# Define all the expressions
+E_undefined1 = sp.symbols('E_undefined1')  # Placeholder for undefined expression
+E_energy1 = (-1)*((λ**i)*m*c)**2  # E = (-1)((λ^i)mc)²
+E_inequality1 = (λ**i)*m*c  # E ≠ ((λ^i)mc)²
+E_energy2 = ((λ**i)*m*c)**2  # E = ((λ^i)mc)²
+E_inequality2 = (i*m*c)**2  # E ≠ (imc)²
+E_energy3 = (-1)*i*m*c**2  # E = (-1)imc²
+E_inequality3 = m*(λ**i)*c**2  # E ≠ m(λ^i)c²
+E_energy4 = (m*c/(2*sp.pi*r))**2  # E = (mc/2πr)²
+E_energy5 = m*c**2/(2*sp.pi*r**2)  # E = mc²/2πr²
+E_inequality4 = c*i*m**2  # E ≠ cim²
+E_inequality5 = c**2*m*i**2  # E ≠ c²mi²
+E_energy6 = m*c**2  # E = mc²
+E_energy7 = (-1)*(λ**i)  # E = (-1)(λ^i)
+E_inequality6 = (λ**i)**2  # E ≠ (λ^i)²
+E_energy8 = (λ**i)**2  # E = (λ^i)²
 
-# Equation: (-)E = mc^2 (functional potential)
-E_functional_potential = -m * c**2
+# Define the call function to check expressions
+def call_program():
+    results = {}
+    
+    # Check if E_undefined1 is undefined (Placeholder for handling undefined expressions)
+    results['E_undefined1'] = "Undefined Expression"
 
-# Equation: E ≠ mc^2 (inequality expression)
-E_inequality_expression = E_undefined + 1  # Just an example of inequality
+    # Evaluate energy expressions
+    results['E_energy1'] = f"E = {E_energy1.simplify()}"
+    results['E_energy2'] = f"E = {E_energy2.simplify()}"
+    results['E_energy3'] = f"E = {E_energy3.simplify()}"
+    results['E_energy4'] = f"E = {E_energy4.simplify()}"
+    results['E_energy5'] = f"E = {E_energy5.simplify()}"
+    results['E_energy6'] = f"E = {E_energy6.simplify()}"
+    results['E_energy7'] = f"E = {E_energy7.simplify()}"
+    results['E_energy8'] = f"E = {E_energy8.simplify()}"
 
-# Equation: E = mc^2 (energy field equation)
-E_energy_field_equation = m * c**2
+    # Check inequalities (Using symbolic comparison)
+    results['E_inequality1'] = E_inequality1 != E_energy2
+    results['E_inequality2'] = E_inequality2 != E_energy3
+    results['E_inequality3'] = E_inequality3 != E_energy3
+    results['E_inequality4'] = E_inequality4 != E_energy5
+    results['E_inequality5'] = E_inequality5 != E_energy6
+    results['E_inequality6'] = E_inequality6 != E_energy8
 
-# Print the results
-print(f"E = mc^2 (undefined): {E_undefined}")
-print(f"(-)E = mc^2 (functional potential): {E_functional_potential}")
-print(f"E ≠ mc^2 (inequality expression): {E_inequality_expression}")
-print(f"E = mc^2 (energy field equation): {E_energy_field_equation}")
+    # Output results
+    for key, value in results.items():
+        print(f"{key}: {value}")
+
+# Call the function to run the program
+call_program()
