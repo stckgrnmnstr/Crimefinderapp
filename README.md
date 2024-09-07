@@ -28,6 +28,8 @@ Finderapp:
 
 Found the exponents correlating to several random objects.
 
+
+
 "Ten Steps"Application:
 
  Ten Steps To Truth 
@@ -44,6 +46,8 @@ The truth "markers" allocate to one space. The lie "markers" spiral outside of t
 This provides a noticeable effect where you can see the markers for the truth gathering in the same space and the markers for the lies trialing away from the space.
 
 The psychological factors are on the outside and therefore rely on the average length of a step. if you attempt to disrupt the process it can take a micron length and require a microscope to measure the unique identifiers of eyeballs, fingerprints and toe prints.
+
+
 
 Polygon Creation From Carbon Emissions:
 
@@ -81,6 +85,8 @@ Polygon 1 and Polygon 2 are disjoint: Polygon confirmed as male humanoid engaged
 ```
 
 This program is useful for analyzing how certain geometric properties of polygons (like shape, interaction, and position) can simulate and describe physical activities based on carbon emission data.
+
+
 
 
 
