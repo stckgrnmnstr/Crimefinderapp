@@ -1,0 +1,81 @@
+from shapely.geometry import Polygon, MultiPoint
+import matplotlib.pyplot as plt
+from random import uniform
+
+# Step 1: Generate Polygon Emissions Data (You can replace with real data)
+def generate_emission_data(num_points=10, spread=10):
+    emissions = []
+    for _ in range(num_points):
+        lat = uniform(-spread, spread)  # Random latitude (or x-axis)
+        lon = uniform(-spread, spread)  # Random longitude (or y-axis)
+        emissions.append((lat, lon))
+    return emissions
+
+# Step 2: Create polygon from emissions data using convex hull
+def create_polygon_from_emissions(emission_points):
+    if len(emission_points) < 3:
+        return None  # Need at least 3 points to form a polygon
+    multi_point = MultiPoint(emission_points)
+    polygon = multi_point.convex_hull
+    return polygon
+
+# Step 3: Analyze and describe polygon activities
+def describe_polygon_activity(polygons):
+    descriptions = []
+    
+    for i, poly1 in enumerate(polygons):
+        for j, poly2 in enumerate(polygons):
+            if i != j:
+                if poly1.overlaps(poly2):
+                    descriptions.append(f'Polygon {i} overlaps with Polygon {j}')
+                elif poly1.touches(poly2):
+                    descriptions.append(f'Polygon {i} touches Polygon {j}')
+                elif poly1.contains(poly2):
+                    descriptions.append(f'Polygon {i} contains Polygon {j}')
+                elif poly2.contains(poly1):
+                    descriptions.append(f'Polygon {j} contains Polygon {i}')
+                else:
+                    descriptions.append(f'Polygon {i} and Polygon {j} are disjoint')
+    
+    return descriptions
+
+# Step 4: Visualize the polygons (optional for visual confirmation)
+def visualize_polygons(polygons, descriptions):
+    fig, ax = plt.subplots()
+    colors = ['blue', 'green', 'red', 'orange', 'purple']  # Colors for polygons
+
+    for i, polygon in enumerate(polygons):
+        x, y = polygon.exterior.xy
+        ax.plot(x, y, color=colors[i % len(colors)], linewidth=2, label=f'Polygon {i}')
+    
+    ax.set_title('Polygon Interactions')
+    ax.legend()
+    plt.grid(True)
+    plt.show()
+
+    # Output descriptions
+    for description in descriptions:
+        print(description)
+
+# Step 5: Main Execution
+if __name__ == "__main__":
+    # Generate emission data for polygons
+    emission_data1 = generate_emission_data(num_points=8)
+    emission_data2 = generate_emission_data(num_points=10)
+    emission_data3 = generate_emission_data(num_points=7)
+
+    # Create polygons from emission data
+    polygons = [
+        create_polygon_from_emissions(emission_data1),
+        create_polygon_from_emissions(emission_data2),
+        create_polygon_from_emissions(emission_data3)
+    ]
+    
+    # Remove None values (if any polygons couldn't be formed)
+    polygons = [p for p in polygons if p is not None]
+
+    # Describe polygon activities and relationships
+    polygon_descriptions = describe_polygon_activity(polygons)
+    
+    # Visualize the polygons and print descriptions
+    visualize_polygons(polygons, polygon_descriptions)
