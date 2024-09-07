@@ -1,0 +1,85 @@
+import numpy as np
+from shapely.geometry import Polygon, MultiPoint, Point
+from shapely.ops import cascaded_union
+import matplotlib.pyplot as plt
+from random import uniform
+
+# Step 1: Simulate Carbon Emissions Data (You can replace this with real data)
+def generate_emission_data(num_points=10, spread=10):
+    emissions = []
+    for _ in range(num_points):
+        lat = uniform(-spread, spread)  # Random latitude (or x-axis)
+        lon = uniform(-spread, spread)  # Random longitude (or y-axis)
+        emissions.append((lat, lon))  # You can add emission values here if needed
+    return emissions
+
+# Step 2: Create polygons from emissions data using convex hull
+def create_polygon_from_emissions(emission_points):
+    if len(emission_points) < 3:
+        return None  # Need at least 3 points to form a polygon
+
+    multi_point = MultiPoint(emission_points)
+    polygon = multi_point.convex_hull
+    return polygon
+
+# Step 3: Analyze relationships between polygons
+def analyze_polygon_relationships(polygons):
+    relationships = {}
+    for i, poly1 in enumerate(polygons):
+        for j, poly2 in enumerate(polygons):
+            if i != j:
+                if poly1.overlaps(poly2):
+                    relationships[(i, j)] = 'Overlapping'
+                elif poly1.touches(poly2):
+                    relationships[(i, j)] = 'Touching'
+                elif poly1.contains(poly2):
+                    relationships[(i, j)] = 'Containing'
+                elif poly2.contains(poly1):
+                    relationships[(i, j)] = 'Contained by'
+                else:
+                    relationships[(i, j)] = 'Disjoint'
+    
+    return relationships
+
+# Step 4: Visualize Polygons and their Interactions
+def visualize_polygons(polygons, relationships):
+    fig, ax = plt.subplots()
+
+    colors = ['blue', 'green', 'red', 'orange', 'purple']  # Colors for different polygons
+
+    # Plot polygons
+    for i, polygon in enumerate(polygons):
+        x, y = polygon.exterior.xy
+        ax.plot(x, y, color=colors[i % len(colors)], linewidth=2, label=f'Polygon {i}')
+
+    # Annotate polygon relationships
+    for (i, j), relation in relationships.items():
+        ax.text(0.5, 0.5, f'{i} & {j}: {relation}', fontsize=9, color='black')
+
+    ax.set_title('Polygon Analysis: Overlap and Interaction')
+    ax.legend()
+    plt.grid(True)
+    plt.show()
+
+# Step 5: Main execution
+if __name__ == "__main__":
+    # Generate multiple sets of emission data for polygons
+    emission_data1 = generate_emission_data(num_points=10)
+    emission_data2 = generate_emission_data(num_points=10)
+    emission_data3 = generate_emission_data(num_points=10)
+
+    # Create polygons from emission data
+    polygons = [
+        create_polygon_from_emissions(emission_data1),
+        create_polygon_from_emissions(emission_data2),
+        create_polygon_from_emissions(emission_data3)
+    ]
+
+    # Remove None values if polygons couldn't be created
+    polygons = [p for p in polygons if p is not None]
+
+    # Analyze relationships between the polygons
+    relationships = analyze_polygon_relationships(polygons)
+
+    # Visualize the polygons and their relationships
+    visualize_polygons(polygons, relationships)
