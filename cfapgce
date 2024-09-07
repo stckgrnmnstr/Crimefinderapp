@@ -1,0 +1,72 @@
+pip install shapely matplotlib
+
+import numpy as np
+from shapely.geometry import Point, Polygon, MultiPoint
+import matplotlib.pyplot as plt
+from random import uniform
+
+# Step 1: Simulate Carbon Emissions Data (You can replace this with real data)
+def generate_emission_data(num_points=10, spread=10):
+    emissions = []
+    for _ in range(num_points):
+        lat = uniform(-spread, spread)  # Random latitude (or x-axis)
+        lon = uniform(-spread, spread)  # Random longitude (or y-axis)
+        emissions.append((lat, lon))  # You can add emission values here if needed
+    return emissions
+
+# Step 2: Create a polygon from emissions and track edges
+def create_polygon_from_emissions(emission_points):
+    if len(emission_points) < 3:
+        return None  # Need at least 3 points to form a polygon
+
+    # Using convex hull to create a polygon around the points
+    multi_point = MultiPoint(emission_points)
+    polygon = multi_point.convex_hull
+
+    return polygon
+
+# Step 3: Track polygon edges and visualize
+def track_polygon_edges(polygon):
+    if polygon is None:
+        print("Polygon could not be formed.")
+        return
+
+    # Extract edges (lines) from the polygon
+    edges = list(polygon.exterior.coords)
+    print("Polygon Edges (Vertices):")
+    for edge in edges:
+        print(f"Edge: {edge}")
+    
+    return edges
+
+# Step 4: Visualize Polygon and Carbon Emissions Data
+def visualize_emissions_and_polygon(emission_points, polygon):
+    fig, ax = plt.subplots()
+    emission_points = np.array(emission_points)
+
+    # Plot emission points
+    ax.scatter(emission_points[:, 0], emission_points[:, 1], c='blue', label='Emission Points')
+
+    # Plot polygon
+    if polygon is not None:
+        x, y = polygon.exterior.xy
+        ax.plot(x, y, color='green', linewidth=2, label='Polygon Edges')
+
+    ax.set_title('Polygon from Carbon Emissions')
+    ax.legend()
+    plt.grid(True)
+    plt.show()
+
+# Step 5: Main execution
+if __name__ == "__main__":
+    # Generate carbon emissions data (lat, lon)
+    emission_data = generate_emission_data(num_points=10)
+
+    # Map emissions to polygon (using convex hull)
+    polygon = create_polygon_from_emissions(emission_data)
+
+    # Track and print polygon edges
+    edges = track_polygon_edges(polygon)
+
+    # Visualize the emissions and polygon
+    visualize_emissions_and_polygon(emission_data, polygon)
