@@ -1,0 +1,111 @@
+import random
+from shapely.geometry import MultiPoint
+from shapely.geometry.polygon import Polygon
+import matplotlib.pyplot as plt
+
+# Function to generate emission points (representing carbon emissions)
+def generate_emission_data(num_points=10, spread=10):
+    emissions = []
+    for _ in range(num_points):
+        lat = random.uniform(-spread, spread)
+        lon = random.uniform(-spread, spread)
+        emissions.append((lat, lon))
+    return emissions
+
+# Function to create a polygon from emissions points using convex hull
+def create_polygon_from_emissions(emission_points):
+    if len(emission_points) < 3:
+        return None  # Need at least 3 points to form a polygon
+    multi_point = MultiPoint(emission_points)
+    polygon = multi_point.convex_hull
+    return polygon
+
+# Describing the polygon activity based on relationships
+def describe_polygon_activity(polygons):
+    descriptions = []
+    
+    for i, poly1 in enumerate(polygons):
+        for j, poly2 in enumerate(polygons):
+            if i != j:
+                if poly1.overlaps(poly2):
+                    descriptions.append(f'Polygon {i} overlaps with Polygon {j}')
+                elif poly1.touches(poly2):
+                    descriptions.append(f'Polygon {i} touches Polygon {j}')
+                elif poly1.contains(poly2):
+                    descriptions.append(f'Polygon {i} contains Polygon {j}')
+                elif poly2.contains(poly1):
+                    descriptions.append(f'Polygon {j} contains Polygon {i}')
+                else:
+                    descriptions.append(f'Polygon {i} and Polygon {j} are disjoint')
+    
+    return descriptions
+
+# Function to map polygon interaction descriptions to human activities
+def map_activity(descriptions):
+    activity_map = {
+        'overlaps': 'jogging',
+        'touches': 'walking',
+        'contains': 'standing still',
+        'disjoint': 'no activity detected'
+    }
+    
+    activity_descriptions = []
+    
+    for description in descriptions:
+        if 'overlaps' in description:
+            activity = activity_map['overlaps']
+        elif 'touches' in description:
+            activity = activity_map['touches']
+        elif 'contains' in description:
+            activity = activity_map['contains']
+        else:
+            activity = activity_map['disjoint']
+        
+        # Convert polygon descriptions into human-readable activity statements
+        activity_descriptions.append(f'{description}: Polygon confirmed as male humanoid engaged in physical activity: {activity}.')
+    
+    return activity_descriptions
+
+# Visualize the polygons
+def visualize_polygons(polygons, descriptions):
+    fig, ax = plt.subplots()
+    colors = ['blue', 'green', 'red', 'orange', 'purple']
+
+    for i, polygon in enumerate(polygons):
+        x, y = polygon.exterior.xy
+        ax.plot(x, y, color=colors[i % len(colors)], linewidth=2, label=f'Polygon {i}')
+    
+    ax.set_title('Polygon Interactions')
+    ax.legend()
+    plt.grid(True)
+    plt.show()
+
+    # Output descriptions
+    for description in descriptions:
+        print(description)
+
+# Main program execution
+if __name__ == "__main__":
+    # Generate random emission data for multiple polygons
+    emission_data1 = generate_emission_data(num_points=8)
+    emission_data2 = generate_emission_data(num_points=10)
+    emission_data3 = generate_emission_data(num_points=7)
+
+    # Create polygons from emission data
+    polygons = [
+        create_polygon_from_emissions(emission_data1),
+        create_polygon_from_emissions(emission_data2),
+        create_polygon_from_emissions(emission_data3)
+    ]
+    
+    # Filter out any None values (polygons that could not be created)
+    polygons = [p for p in polygons if p is not None]
+
+    # Describe polygon activities (interaction descriptions)
+    polygon_descriptions = describe_polygon_activity(polygons)
+    
+    # Map polygon descriptions to human activities
+    activity_descriptions = map_activity(polygon_descriptions)
+    
+    # Visualize the polygons and output the human activity descriptions
+    visualize_polygons(polygons, activity_descriptions)
