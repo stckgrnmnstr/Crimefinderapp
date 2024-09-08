@@ -1,0 +1,18 @@
+def load_emission_data(file_path):
+    """
+    Load carbon emission data from an image file.
+    """
+    emission_data = cv2.imread(file_path, cv2.IMREAD_GRAYSCALE)
+    if emission_data is None:
+        raise FileNotFoundError(f"File not found: {file_path}")
+    return emission_data
+
+def preprocess_data(emission_data):
+    """
+    Preprocess the emission data to prepare for polygon detection.
+    """
+    # Normalize the data to range [0, 255]
+    normalized_data = cv2.normalize(emission_data, None, 0, 255, cv2.NORM_MINMAX)
+    # Apply Gaussian Blur to reduce noise
+    blurred_data = cv2.GaussianBlur(normalized_data, (5, 5), 0)
+    return blurred_data
