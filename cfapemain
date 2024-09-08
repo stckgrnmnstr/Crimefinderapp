@@ -1,0 +1,19 @@
+def main(file_path, reference_point):
+    try:
+        emission_data = load_emission_data(file_path)
+        preprocessed_data = preprocess_data(emission_data)
+        edges = detect_edges(preprocessed_data)
+        polygons = find_polygons(edges)
+        mapped_polygons = map_polygons_to_reference(polygons, reference_point)
+        descriptions = describe_polygon_activity(mapped_polygons)
+        
+        for i, description in enumerate(descriptions):
+            print(f"Polygon {i+1}: {description}")
+    
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+if __name__ == "__main__":
+    file_path = 'path_to_emission_data_image.jpg'  # Update with the path to your image
+    reference_point = (50, 100)  # Example reference point
+    main(file_path, reference_point)
