@@ -100,10 +100,12 @@ Undefined, Inequality and Energy expressions:
 
 
 E={undefined expression}
-E≠{inequality expression}
-E≥{energy equivalency expression}
-E≥1 {equivalency expression}
 
+E≠{inequality expression}
+
+E≥{energy equivalency expression}
+
+E≥1 {equivalency expression}
 
 E=(-1)(λ^i)mc² {energy equation}
 
@@ -111,18 +113,13 @@ E≠((λ^i)mc)² {undefined inequality}
 
 E=((λ^i)mc)² {undefined expression}
 
-
-
 E=((λ^i)(mc)(-1)))² {energy increase expression}
 
-
 E=(-1)m(λ^i)c² {energy expression}
-
 
 E=(mc/2πr)² {undefined space expression}
 
 E=mc²/2πr² {energy expression}
-
 
 E=(-1)(λ^i) {energy expression}
 
