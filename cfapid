@@ -1,0 +1,17 @@
+def detect_edges(preprocessed_data):
+    """
+    Detect edges in the preprocessed emission data.
+    """
+    # Apply Canny edge detection
+    edges = cv2.Canny(preprocessed_data, 50, 150)
+    return edges
+
+def find_polygons(edges):
+    """
+    Find polygons from the detected edges.
+    """
+    # Find contours from edges
+    contours, _ = cv2.findContours(edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    # Approximate contours to polygons
+    polygons = [cv2.approxPolyDP(cnt, 0.02 * cv2.arcLength(cnt, True), True) for cnt in contours]
+    return polygons
