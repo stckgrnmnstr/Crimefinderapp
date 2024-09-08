@@ -1,0 +1,14 @@
+def map_polygons_to_reference(polygons, reference_point):
+    """
+    Map detected polygons to a reference point.
+    """
+    mapped_polygons = []
+    for polygon in polygons:
+        mapped_polygon = []
+        for point in polygon:
+            x, y = point[0]
+            new_x = x + reference_point[0]
+            new_y = y + reference_point[1]
+            mapped_polygon.append([new_x, new_y])
+        mapped_polygons.append(np.array(mapped_polygon, dtype=np.int32))
+    return mapped_polygons
