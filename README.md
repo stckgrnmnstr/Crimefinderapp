@@ -98,43 +98,38 @@ Cures, finding, and security software.
 
 Undefined, Inequality and Energy expressions:
 
-E≠imc {undefined inequality}
 
-E=(-1)((λ^i)mc)² {energy equation}
+E={undefined expression}
+E≠{inequality expression}
+E≥{energy equivalency expression}
+E≥1 {equivalency expression}
 
-E≠((λ^i)mc)² {inequality}
+
+E=(-1)(λ^i)mc² {energy equation}
+
+E≠((λ^i)mc)² {undefined inequality}
 
 E=((λ^i)mc)² {undefined expression}
 
-E≠(imc)² {inequality expression}
 
-E=(-1)imc²{energy expression}
 
-E≠imc²{inequality expression}
+E=((λ^i)(mc)(-1)))² {energy increase expression}
 
-E=(-1)imc²{energy expression}
-
-E=(-1)((λ^i)(mc))² {energy expression}
-
-E≠((i)(mc))² {inequality expression}
 
 E=(-1)m(λ^i)c² {energy expression}
 
-E≠mic² {inequality expression}
 
-E=(mc/2πr)² {energy expression}
+E=(mc/2πr)² {undefined space expression}
 
 E=mc²/2πr² {energy expression}
 
-E≠cim² {inequality expression}
-
-E≠c²mi² {inequality expression}
-
-E=mc² {energy expression}
 
 E=(-1)(λ^i) {energy expression}
 
 E≠(λ^i)² {inequality expression}
+
+E=(λ^i)² {undefined expression}
+
 
 Dimension Equations:
 
