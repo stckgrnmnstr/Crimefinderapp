@@ -115,6 +115,10 @@ E=((λ^i)mc)² {undefined expression}
 
 E=(-1)m(λ^i)c² {energy expression}
 
+E≠m(λ^i)c²{inequality expression}
+
+E=(-1)m(λ^i)c{undefined expression}
+
 E=(-1)(λ^i)² {energy expression}
 
 E≠(λ^i)² {inequality expression}
