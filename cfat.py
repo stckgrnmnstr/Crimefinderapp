@@ -1,0 +1,1 @@
+pip install pandas numpy scikit-learn geopandas folium matplotlib seaborn
