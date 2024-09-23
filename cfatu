@@ -1,0 +1,100 @@
+# Import necessary libraries
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import DBSCAN
+from sklearn.decomposition import PCA
+import geopandas as gpd
+import folium
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# 1. Data Acquisition
+def load_data(file_path):
+    """Load crime data from a CSV file."""
+    data = pd.read_csv(file_path)
+    return data
+
+# 2. Data Cleaning and Preprocessing
+def clean_data(data):
+    """Clean the data by handling missing values and removing duplicates."""
+    data = data.dropna()  # Remove missing values
+    data = data.drop_duplicates()  # Remove duplicates
+    return data
+
+# 3. Data Enrichment
+def enrich_data(data):
+    """Enhance the data with additional features if necessary."""
+    # For demonstration, we add a 'year' feature from 'date' column
+    data['date'] = pd.to_datetime(data['date'])
+    data['year'] = data['date'].dt.year
+    return data
+
+# 4. Quantized Point Analysis
+def quantized_point_analysis(data):
+    """Perform quantized point analysis and clustering."""
+    # Create a grid of quantized points (using latitude and longitude)
+    quantized_data = data[['latitude', 'longitude']]
+    
+    # Normalize the data
+    scaler = StandardScaler()
+    scaled_data = scaler.fit_transform(quantized_data)
+
+    # Use DBSCAN for clustering
+    clustering = DBSCAN(eps=0.01, min_samples=5).fit(scaled_data)
+    data['cluster'] = clustering.labels_
+    
+    return data
+
+# 5. Dimensionality Reduction
+def dimensionality_reduction(data):
+    """Reduce dimensionality using PCA."""
+    pca = PCA(n_components=2)
+    features = data[['latitude', 'longitude', 'year']]
+    reduced_data = pca.fit_transform(features)
+    return reduced_data
+
+# 6. Visualization
+def visualize_clusters(data):
+    """Visualize crime clusters on a map."""
+    # Create a base map
+    map_center = [data['latitude'].mean(), data['longitude'].mean()]
+    crime_map = folium.Map(location=map_center, zoom_start=12)
+
+    # Add crime points to the map
+    for idx, row in data.iterrows():
+        folium.CircleMarker(
+            location=(row['latitude'], row['longitude']),
+            radius=5,
+            color='blue' if row['cluster'] == -1 else 'red',  # Clustered points in red
+            fill=True,
+            fill_opacity=0.6,
+            popup=f'Crime ID: {row["id"]}, Year: {row["year"]}'
+        ).add_to(crime_map)
+
+    return crime_map
+
+# 7. Main Function
+def main():
+    """Main function to run the application."""
+    # Load data
+    data = load_data('crime_data.csv')
+
+    # Clean and preprocess data
+    cleaned_data = clean_data(data)
+    enriched_data = enrich_data(cleaned_data)
+
+    # Perform quantized point analysis
+    clustered_data = quantized_point_analysis(enriched_data)
+
+    # Dimensionality reduction (optional, for other analyses)
+    reduced_data = dimensionality_reduction(clustered_data)
+
+    # Visualize clusters
+    crime_map = visualize_clusters(clustered_data)
+    crime_map.save('crime_map.html')  # Save the map to an HTML file
+
+    print("Analysis complete. Map saved as 'crime_map.html'.")
+
+if __name__ == '__main__':
+    main()
