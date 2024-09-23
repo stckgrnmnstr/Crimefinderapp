@@ -1,0 +1,70 @@
+import numpy as np
+from sklearn.cluster import KMeans
+
+# Mock fragment data structure for crime fragments (incomplete data)
+class CrimeFragment:
+    def __init__(self, x=None, y=None, time=None, source=None):
+        self.x = x  # partial X coordinate
+        self.y = y  # partial Y coordinate
+        self.time = time  # timestamp fragment
+        self.source = source  # source of the fragment (e.g., GPS, CCTV, social media)
+
+# Generate some mock fragments (some with missing data)
+fragments = [
+    CrimeFragment(1, 2, "2023-09-21T12:00", "GPS"),
+    CrimeFragment(None, 3, "2023-09-21T12:05", "CCTV"),
+    CrimeFragment(1.5, None, "2023-09-21T12:10", "Social Media"),
+    CrimeFragment(2, 3.5, None, "Witness"),
+    CrimeFragment(None, None, "2023-09-21T12:15", "Anonymous Tip")
+]
+
+# Step 1: Fragment Gathering
+def gather_fragments(fragments):
+    valid_fragments = []
+    for fragment in fragments:
+        # Filter out fragments that are too incomplete to use
+        if fragment.x is not None or fragment.y is not None or fragment.time is not None:
+            valid_fragments.append(fragment)
+    return valid_fragments
+
+# Step 2: Fragment Alignment (basic example - by timestamp)
+def align_fragments(fragments):
+    aligned_fragments = {}
+    for fragment in fragments:
+        # Align fragments by their time, treating time as the primary key
+        if fragment.time not in aligned_fragments:
+            aligned_fragments[fragment.time] = []
+        aligned_fragments[fragment.time].append(fragment)
+    return aligned_fragments
+
+# Step 3: Fragment Weighting (assign reliability scores based on source)
+def weight_fragments(fragments):
+    weights = {"GPS": 1.0, "CCTV": 0.8, "Social Media": 0.5, "Witness": 0.6, "Anonymous Tip": 0.3}
+    weighted_fragments = []
+    for fragment in fragments:
+        weight = weights.get(fragment.source, 0.5)  # Default to 0.5 if unknown source
+        weighted_fragments.append((fragment, weight))
+    return weighted_fragments
+
+# Step 4: Fragment Aggregation (combine data into one quantized point)
+def aggregate_fragments(aligned_fragments):
+    reconstructed_bits = []
+    for time, frag_group in aligned_fragments.items():
+        # Combine fragments from the same time point by averaging known values
+        x_vals = [frag.x for frag in frag_group if frag.x is not None]
+        y_vals = [frag.y for frag in frag_group if frag.y is not None]
+        
+        # Average the coordinates to create a complete quantized bit
+        if x_vals and y_vals:
+            reconstructed_bit = (np.mean(x_vals), np.mean(y_vals), time)
+        else:
+            # If some coordinates are missing, just use available data
+            reconstructed_bit = (np.mean(x_vals) if x_vals else None,
+                                 np.mean(y_vals) if y_vals else None,
+                                 time)
+        reconstructed_bits.append(reconstructed_bit)
+    return reconstructed_bits
+
+# Step 5: Bit Reconstruction with Error Correction (fill missing values)
+def reconstruct_bits(reconstructed_bits):
+    # Apply KMeans clustering to predict
