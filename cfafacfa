@@ -1,0 +1,67 @@
+# Import necessary libraries
+from datetime import datetime
+from typing import List, Optional
+
+# Data classes for Crimefinderapp
+class PettyCrime:
+    def __init__(self, crime_type: str, description: str, date_reported: datetime, location: str):
+        self.crime_type = crime_type  # Type of petty crime (e.g., lost keys, misplaced phone)
+        self.description = description  # Detailed description of the incident
+        self.date_reported = date_reported  # Date when the crime was reported
+        self.location = location  # Location where the incident occurred
+
+class NaturalCrime:
+    def __init__(self, crime_type: str, cause: str, severity: str, date_reported: datetime, location: str):
+        self.crime_type = crime_type  # Type of natural crime (e.g., flooding, landslide)
+        self.cause = cause  # Cause of the natural incident
+        self.severity = severity  # Severity of the incident (e.g., minor, moderate, severe)
+        self.date_reported = date_reported  # Date when the crime was reported
+        self.location = location  # Location where the incident occurred
+
+# Library to manage petty crimes
+class CrimeLibrary:
+    def __init__(self):
+        self.petty_crimes: List[PettyCrime] = []
+        
+    def report_petty_crime(self, crime: PettyCrime):
+        self.petty_crimes.append(crime)
+        
+    def find_petty_crime(self, location: Optional[str] = None) -> List[PettyCrime]:
+        if location:
+            return [crime for crime in self.petty_crimes if crime.location == location]
+        return self.petty_crimes
+
+# Library to manage natural crimes
+class NaturalCrimeLibrary:
+    def __init__(self):
+        self.natural_crimes: List[NaturalCrime] = []
+        
+    def report_natural_crime(self, crime: NaturalCrime):
+        self.natural_crimes.append(crime)
+        
+    def find_natural_crime(self, severity: Optional[str] = None) -> List[NaturalCrime]:
+        if severity:
+            return [crime for crime in self.natural_crimes if crime.severity == severity]
+        return self.natural_crimes
+
+# Sample Usage
+if __name__ == "__main__":
+    # Initialize libraries
+    petty_crime_library = CrimeLibrary()
+    natural_crime_library = NaturalCrimeLibrary()
+
+    # Report some petty crimes
+    petty_crime_library.report_petty_crime(PettyCrime("Lost Keys", "Left keys at the café.", datetime.now(), "Café A"))
+    petty_crime_library.report_petty_crime(PettyCrime("Misplaced Phone", "Forgot phone at the gym.", datetime.now(), "Gym B"))
+
+    # Report a natural crime
+    natural_crime_library.report_natural_crime(NaturalCrime("Flood", "Heavy rain", "Severe", datetime.now(), "Area C"))
+
+    # Retrieve and print reported crimes
+    print("Reported Petty Crimes:")
+    for crime in petty_crime_library.find_petty_crime():
+        print(f"{crime.date_reported}: {crime.crime_type} - {crime.description} at {crime.location}")
+
+    print("\nReported Natural Crimes:")
+    for crime in natural_crime_library.find_natural_crime():
+        print(f"{crime.date_reported}: {crime.crime_type} - {crime.cause} at {crime.location} (Severity: {crime.severity})")
