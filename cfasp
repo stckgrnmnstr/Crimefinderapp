@@ -1,0 +1,83 @@
+import numpy as np
+import pandas as pd
+
+# Define constants for the space dimensions
+TIME_DIMENSION = 0
+SEVERITY_DIMENSION = 1
+LOCATION_DIMENSION = 2
+TYPE_DIMENSION = 3
+
+# Function to create a 4D space for crime incidents
+def create_crime_space(incidents):
+    """ Create a 4D space representation of crime incidents. """
+    space_shape = (10, 10, 10, 10)  # Example dimensions for time, severity, location, type
+    crime_space = np.zeros(space_shape)
+
+    for incident in incidents:
+        time_index = min(int(incident['time']), space_shape[TIME_DIMENSION] - 1)
+        severity_index = min(int(incident['severity']), space_shape[SEVERITY_DIMENSION] - 1)
+        location_index = min(int(incident['location']), space_shape[LOCATION_DIMENSION] - 1)
+        type_index = min(int(incident['type']), space_shape[TYPE_DIMENSION] - 1)
+
+        crime_space[time_index][severity_index][location_index][type_index] += 1
+
+    return crime_space
+
+# Class to manage crime data
+class CrimeDataManager:
+    def __init__(self):
+        self.incidents = []
+
+    def add_incident(self, time, severity, location, crime_type):
+        self.incidents.append({'time': time, 'severity': severity, 'location': location, 'type': crime_type})
+
+    def analyze_space(self):
+        """ Analyze the crime incidents within the 4D space. """
+        crime_space = create_crime_space(self.incidents)
+        return crime_space
+
+    def point_of_absence_analysis(self, crime_space):
+        """ Analyze points of absence in the crime space. """
+        # Example logic to identify areas with zero incidents
+        absence_points = np.argwhere(crime_space == 0)
+        return absence_points
+
+    def free_association_effervescence(self, crime_space):
+        """ Explore relationships between crime values in the space. """
+        associations = []
+        # Analyzing associations based on the space structure
+        for i in range(crime_space.shape[TIME_DIMENSION]):
+            for j in range(crime_space.shape[SEVERITY_DIMENSION]):
+                for k in range(crime_space.shape[LOCATION_DIMENSION]):
+                    if crime_space[i][j][k].sum() > 0:
+                        associations.append((i, j, k, crime_space[i][j][k].sum()))
+        return associations
+
+# Example usage
+def main():
+    crime_manager = CrimeDataManager()
+
+    # Add sample incidents (time, severity, location, type)
+    crime_manager.add_incident(time=1, severity=7, location=2, crime_type=0)  # Example values
+    crime_manager.add_incident(time=2, severity=5, location=1, crime_type=1)
+    crime_manager.add_incident(time=3, severity=9, location=3, crime_type=0)
+    crime_manager.add_incident(time=1, severity=6, location=1, crime_type=2)
+    crime_manager.add_incident(time=2, severity=8, location=0, crime_type=3)
+
+    # Analyze the space
+    crime_space = crime_manager.analyze_space()
+
+    # Analyze points of absence
+    absence_points = crime_manager.point_of_absence_analysis(crime_space)
+    print("Points of Absence (zero incidents):")
+    for point in absence_points:
+        print(f"Time: {point[0]}, Severity: {point[1]}, Location: {point[2]}, Type: {point[3]}")
+
+    # Explore free association of effervescence
+    associations = crime_manager.free_association_effervescence(crime_space)
+    print("\nAssociations within the Crime Space:")
+    for association in associations:
+        print(f"Time: {association[0]}, Severity: {association[1]}, Location: {association[2]}, Count: {association[3]}")
+
+if __name__ == "__main__":
+    main()
