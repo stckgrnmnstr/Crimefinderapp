@@ -1,0 +1,76 @@
+import pandas as pd
+
+# Class to represent a crime incident
+class CrimeIncident:
+    def __init__(self, crime_type, severity, social_factors, temporal_factors, evidence, references):
+        self.crime_type = crime_type
+        self.severity = severity
+        self.social_factors = social_factors
+        self.temporal_factors = temporal_factors
+        self.evidence = evidence
+        self.references = references
+        self.quantized_point_value = self.calculate_quantized_point_value()
+
+    def calculate_quantized_point_value(self):
+        # Placeholder normalization factor (this can be adjusted based on actual data)
+        normalization_factor = 1.0  
+        # Calculate QPV
+        qpv = (self.severity + self.social_factors + self.temporal_factors) / normalization_factor
+        return qpv
+
+# Class to manage the quantized point library
+class QuantizedPointLibrary:
+    def __init__(self):
+        self.library = []
+
+    def add_incident(self, incident):
+        self.library.append(incident)
+
+    def find_by_crime_type(self, crime_type):
+        return [incident for incident in self.library if incident.crime_type == crime_type]
+
+    def get_summary(self):
+        return [(incident.crime_type, incident.quantized_point_value) for incident in self.library]
+
+    def analyze_word(self, word):
+        """ Analyze incidents related to the specified word (e.g., 'crime'). """
+        related_incidents = [incident for incident in self.library if word.lower() in incident.crime_type.lower()]
+        return related_incidents
+
+# Function to gather crime data
+def gather_crime_data():
+    # This function can be expanded to gather real crime data
+    # Here we use a sample dataset for demonstration purposes
+    return [
+        CrimeIncident(crime_type="Burglary", severity=7, social_factors=5, temporal_factors=3, evidence="Footprint", references=["Case1"]),
+        CrimeIncident(crime_type="Robbery", severity=9, social_factors=6, temporal_factors=4, evidence="Witness statement", references=["Case2"]),
+        CrimeIncident(crime_type="Assault", severity=8, social_factors=7, temporal_factors=5, evidence="CCTV footage", references=["Case3"]),
+        CrimeIncident(crime_type="Cyber Crime", severity=6, social_factors=5, temporal_factors=3, evidence="Digital footprint", references=["Case4"]),
+        CrimeIncident(crime_type="Drug Crime", severity=8, social_factors=6, temporal_factors=4, evidence="Narcotics", references=["Case5"]),
+    ]
+
+# Example usage
+def main():
+    # Gather sample crime data
+    incidents = gather_crime_data()
+
+    # Create the quantized point library
+    qpl = QuantizedPointLibrary()
+
+    # Add incidents to the library
+    for incident in incidents:
+        qpl.add_incident(incident)
+
+    # Retrieve summary of the library
+    print("Quantized Point Library Summary:")
+    for crime_type, qpv in qpl.get_summary():
+        print(f"Crime Type: {crime_type}, QPV: {qpv}")
+
+    # Analyze for the word "crime"
+    analyzed_crimes = qpl.analyze_word("crime")
+    print("\nIncidents related to the word 'crime':")
+    for incident in analyzed_crimes:
+        print(f"Crime Type: {incident.crime_type}, Severity: {incident.severity}, Evidence: {incident.evidence}")
+
+if __name__ == "__main__":
+    main()
