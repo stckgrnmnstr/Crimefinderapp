@@ -272,10 +272,6 @@ E≠(λ^i)² {inequality expression}
 
 E=(λ^i)² {undefined expression}
 
-E=e↓i↓a²
-
-
-Can you expand on mass in negative motion multiplied to a negative imaginary unit wavelength multiplied by a constant squared?
 
 check/improve/correct the code syntax:
 
