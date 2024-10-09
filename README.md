@@ -277,14 +277,17 @@ E=e↓i↓a²
 
 Can you expand on mass in negative motion multiplied to a negative imaginary unit wavelength multiplied by a constant squared?
 
-Can you check/improve/correct the code syntax and:
+check/improve/correct the code syntax:
+
 1. define lambda separate from i² and i
 2. define →as brought forward to
 3. Define ↓as brought down to 
 4. Define ↑as brought up to
 5. Define ←as brought reverse to 
 6. Define i as having to be represented as i² through complex function as the √ of -1 as √-1
-7. Can you define the constants as:
+
+
+Can you define the constraints as:
+
 1. C,E,M as equal to variable
 2. Lambda, i², ∆ as equal to complex with subset routines for wavelength, imaginary unit and delta maneuver
-3. 
