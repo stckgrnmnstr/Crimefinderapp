@@ -105,40 +105,7 @@ Cures, finding, and security software.
 
 
 
-Undefined, Inequality and Energy expressions:
-
-
-Evaluate:
-
-Value=Value
-Value=undefined 
-Value=undefined value
-Value=Value
-Value=Virtue
-Virtue=Ethical
-Ethical=Ethics
-Ethics=Ethic
-Ethics=Freedom
-Freedom=Potential
-Potential=Information
-Information=Fact
-Information=carbon
-Fact=undefined 
-Carbon=Value
-Fact=Value
-Fact=Information 
-Fact=Fact
-Energy=E
-Energy=information
-Information=Value
-Value=Energy 
-E=Value
-Value=Fact 
-Fact=undefined 
-E==undefined 
-Undefined=information
-Information=Energy
-Energy=E
+Dimensions:
 
 f{dim(x)}|x=y
 
@@ -223,6 +190,9 @@ f{dim(4)}|∞=∞
 f{dim(4)}|∞=π
 
 f{dim(4)}|π=∞
+
+Undefined, Inequality and Energy expressions:
+
 
 E= {undefined expression}
 
