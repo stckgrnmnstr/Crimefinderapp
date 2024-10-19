@@ -185,94 +185,69 @@ f{dim(4)}|∞=π
 f{dim(4)}|π=∞
 
 E= {undefined expression}
+
 E=x {undefined equality expression}
+
 E≠ {inequality expression}
+
 E≥ {energy equivalency expression}
+
 E≥1 {equivalency expression}
+
 E=m {equivalency expression}
+
 E≤π {equivalency expression}
+
 E=(-1)(λ^i)mc² {energy equation}
+
 E≠((λ^i)mc)² {undefined inequality}
+
 E=(λ^i)²mc² {energy expression}
+
 E=((λ^i)(mc)(-1)))² {energy expression}
+
 E=(-1)m(λ^i)c² {energy expression}
+
 E=(mc/2πr)² {undefined space expression}
+
 E=mc²/2πr² {energy expression}
+
 E=(mc/2πr)∆² {energy expression}
+
 E=(-1)(λ^i) {energy expression}
+
 E≠(λ^i) {inequality expression}
+
 E=(λ^i)² {energy expression}
+
 E=(λ^i)∆² {energy expression}
+
 E=(λ^i)→² {energy expression}
+
 E≠(imc)² {inequality expression}
+
 E=(-1)imc²{energy expression}
+
 E≠imc²{inequality expression}
+
 E=imc²→(-1) {energy expression}
+
 E=imc²∆(-1) {energy expression}
+
 E=i²↓(-1) {energy expression}
+
 E=i²λ→(-1) {energy expression}
+
 E=i²λ∆(-1) {energy expression}
+
 E=mc²∆i²λ∆(-1) {energy expression}
+
 E=mc²→i²λ→(-1) {energy expression}
+
 E=i²λ∆(-1)→mc² {energy expression}
+
 E=i²λ→(-1)→mc² {energy expression}
 
-E≥1
-E=mc²
-E=mc²/2πr²
-E=(-1)imc²
-E=(λ^i)² 
-E=(λ^i)∆² 
-E=2.x
-E≥2.x
-E≠(λ^i)²
-E=(λ^i)∆²
-E=(λ^i)→²
-E≤π
-E={undefined expression}
-E≠{inequality expression}
-E≥{energy equivalency expression}
-E≥1 {equivalency expression}
-
-E≠imc {undefined inequality}
-
-E=(-1)((λ^i)mc)² {energy equation}
-
-E≠((λ^i)mc)² {inequality}
-
-E=((λ^i)mc)² {undefined expression}
-
-E≠(imc)² {inequality expression}
-
-E=(-1)imc²{energy expression}
-
-E≠imc²{inequality expression}
-
-E=(-1)imc²{energy expression}
-
-E=(-1)((λ^i)(mc))² {energy expression}
-
-E≠((i)(mc))² {inequality expression}
-
-E=(-1)m(λ^i)c² {energy expression}
-
-E≠mic² {inequality expression}
-
-E=(mc/2πr)² {energy expression}
-
-E=mc²/2πr² {energy expression}
-
-E≠cim² {inequality expression}
-
-E≠c²mi² {inequality expression}
-
-E=mc² {energy expression}
-
-E=(-1)(λ^i) {energy expression}
-
-E≠(λ^i)² {inequality expression}
-
-E=(λ^i)² {undefined expression}
 
 
 check/improve/correct the code syntax:
