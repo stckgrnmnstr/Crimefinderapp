@@ -1,0 +1,243 @@
+import numpy as np
+
+class TenDimensionalSpace:
+    def __init__(self):
+        """Initialize an empty ten-dimensional space with tracking capabilities."""
+        self.points = []  # Store points in the ten-dimensional space
+        self.dimension_labels = [f"Dimension {i}" for i in range(10)]  # Dimension labels
+        self.value_history = {label: [] for label in self.dimension_labels}  # History of values for each dimension
+
+    def add_point(self, point):
+        """Add a point to the ten-dimensional space.
+
+        Args:
+            point (list or np.ndarray): A list or array of 10 numerical values.
+
+        Raises:
+            ValueError: If the point does not have exactly 10 dimensions.
+        """
+        if len(point) != 10:
+            raise ValueError("Point must have exactly 10 dimensions.")
+        
+        point_array = np.array(point)  # Convert to a numpy array
+        self.points.append(point_array)  # Store the point
+        self._update_value_history(point_array)  # Update the value history
+
+    def _update_value_history(self, point):
+        """Update the value history for each dimension of the given point."""
+        for index, value in enumerate(point):
+            self.value_history[self.dimension_labels[index]].append(value)
+
+    def enclose_points(self):
+        """Get the minimum and maximum bounds of points in the space.
+
+        Returns:
+            tuple: Minimum and maximum bounds for each dimension, or None if no points exist.
+        """
+        if not self.points:
+            return None  # No points exist
+        return np.min(self.points, axis=0), np.max(self.points, axis=0)  # Return min and max bounds
+
+    def process_points(self, application_function):
+        """Process each point using a provided application function.
+
+        Args:
+            application_function (callable): A function that processes a point.
+
+        Returns:
+            list: A list of processed points.
+        """
+        return [application_function(point) for point in self.points]  # Apply function to each point
+
+    def acknowledge_values(self, criteria_function):
+        """Acknowledge points based on a criteria function.
+
+        Args:
+            criteria_function (callable): A function that returns True for points to acknowledge.
+
+        Returns:
+            list: A list of acknowledged points.
+        """
+        return [point for point in self.points if criteria_function(point)]  # Filter points based on criteria
+
+    def calculate_motion(self, start_point, end_point):
+        """Calculate the motion vector between two points.
+
+        Args:
+            start_point (list or np.ndarray): The starting point in 10D.
+            end_point (list or np.ndarray): The ending point in 10D.
+
+        Raises:
+            ValueError: If either point does not have exactly 10 dimensions.
+
+        Returns:
+            np.ndarray: The motion vector from start to end point.
+        """
+        if len(start_point) != 10 or len(end_point) != 10:
+            raise ValueError("Both start and end points must have exactly 10 dimensions.")
+        
+        return np.array(end_point) - np.array(start_point)  # Calculate motion vector
+
+    def get_dimension_labels(self):
+        """Get labels for each dimension.
+
+        Returns:
+            list: A list of dimension labels.
+        """
+        return self.dimension_labels  # Return dimension labels
+
+    def get_dimension_value(self, point, dimension_string):
+        """Get the value of a specific dimension in a point.
+
+        Args:
+            point (np.ndarray): The point to retrieve the dimension value from.
+            dimension_string (str): The dimension string (e.g., "Dimension 0").
+
+        Returns:
+            float: The value of the specified dimension.
+
+        Raises:
+            ValueError: If the dimension string is invalid.
+        """
+        index = self._get_dimension_index(dimension_string)
+        return point[index]  # Return the value at the specified dimension
+
+    def _get_dimension_index(self, dimension_string):
+        """Convert a dimension string to its corresponding index.
+
+        Args:
+            dimension_string (str): The dimension string.
+
+        Returns:
+            int: The index of the dimension.
+
+        Raises:
+            ValueError: If the dimension string is invalid.
+        """
+        if dimension_string in self.dimension_labels:
+            return int(dimension_string.split(" ")[1])
+        raise ValueError("Invalid dimension string. Must be in the format 'Dimension X' where X is 0-9.")
+
+    def process_dimension(self, application_function, dimension_string):
+        """Process all points in a specific dimension using an application function.
+
+        Args:
+            application_function (callable): A function that processes a single dimension value.
+            dimension_string (str): The dimension string.
+
+        Returns:
+            list: A list of processed dimension values.
+        """
+        index = self._get_dimension_index(dimension_string)
+        return [application_function(point[index]) for point in self.points]  # Process values in the specified dimension
+
+    def identify_value(self, dimension_string, threshold):
+        """Identify and return values exceeding a specified threshold in a dimension.
+
+        Args:
+            dimension_string (str): The dimension string.
+            threshold (float): The threshold value.
+
+        Returns:
+            list: Values that exceed the threshold in the specified dimension.
+        """
+        index = self._get_dimension_index(dimension_string)
+        return [point[index] for point in self.points if point[index] > threshold]  # Filter values above the threshold
+
+    def analyze_values(self, dimension_string):
+        """Perform analysis on values in a specific dimension (e.g., mean, max, min).
+
+        Args:
+            dimension_string (str): The dimension string.
+
+        Returns:
+            dict: A dictionary containing mean, max, and min of the specified dimension.
+        """
+        index = self._get_dimension_index(dimension_string)
+        values = [point[index] for point in self.points]
+        
+        return {
+            "mean": np.mean(values),
+            "max": np.max(values),
+            "min": np.min(values)
+        }  # Return analysis results
+
+    def track_value_changes(self, dimension_string):
+        """Retrieve the history of changes for a specific dimension.
+
+        Args:
+            dimension_string (str): The dimension string.
+
+        Returns:
+            list: The history of values for the specified dimension.
+
+        Raises:
+            ValueError: If no history exists for the specified dimension.
+        """
+        if dimension_string not in self.value_history:
+            raise ValueError("No history exists for the specified dimension.")
+        
+        return self.value_history[dimension_string]  # Return history for the specified dimension
+
+
+# Example usage
+if __name__ == "__main__":
+    # Example application function that processes the dimension value by scaling it.
+    def sample_application_function(value):
+        return value * 2  # Example processing: doubling the value
+
+    # Example criteria function to acknowledge values.
+    def sample_criteria_function(point):
+        return np.sum(point) > 50  # Acknowledge points where the sum of dimensions is greater than 50
+
+    # Create an instance of the TenDimensionalSpace
+    ten_d_space = TenDimensionalSpace()
+
+    # Add sample points
+    ten_d_space.add_point([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+    ten_d_space.add_point([10, 20, 30, 40, 50, 60, 70, 80, 90, 100])
+    ten_d_space.add_point([5, 5, 5, 5, 5, 5, 5, 5, 5, 5])
+
+    # Enclose points
+    bounds = ten_d_space.enclose_points()
+    if bounds:
+        min_bounds, max_bounds = bounds
+        print("Min Bounds:", min_bounds)
+        print("Max Bounds:", max_bounds)
+
+    # Process all points
+    processed = ten_d_space.process_points(sample_application_function)
+    print("Processed Points:", processed)
+
+    # Acknowledge values based on criteria
+    acknowledged = ten_d_space.acknowledge_values(sample_criteria_function)
+    print("Acknowledged Points:", acknowledged)
+
+    # Calculate motion vector
+    motion_vector = ten_d_space.calculate_motion([1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [2, 2, 2, 2, 2, 2, 2, 2, 2, 2])
+    print("Motion Vector:", motion_vector)
+
+    # Retrieve and display dimension labels
+    labels = ten_d_space.get_dimension_labels()
+    print("Dimension Labels:", labels)
+
+    # Get value for a specific dimension from a point
+    point = ten_d_space.points[0]
+    value = ten_d_space.get_dimension_value(point, "Dimension 3")
+    print("Value at Dimension 3 for point:", value)
+
+    # Process all points in a specific dimension
+    processed_dimension_values = ten_d_space.process_dimension(sample_application_function, "Dimension 5")
+    print("Processed Values for Dimension 5:", processed_dimension_values)
+
+    # Identify values exceeding a threshold in a specific dimension
+    identified_values = ten_d_space.identify_value("Dimension 2", 4)
+    print("Identified Values in Dimension 2 exceeding threshold of 4:", identified_values)
+
+    # Analyze values in a specific dimension
+    analysis_results = ten_d_space.analyze_values("Dimension 1")
+    print("Analysis Results for Dimension 1:", analysis_results)
+
+    # Track value history
+    value_changes = ten_d_space.track_value_changes("Dimension 0")
+    print("Value Changes for Dimension 0:", value_changes)
