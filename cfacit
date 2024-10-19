@@ -1,0 +1,197 @@
+import time
+import datetime
+import json
+import matplotlib.pyplot as plt
+import numpy as np
+
+class EmissionSource:
+    def __init__(self, symbol, location, emission_rate):
+        self.symbol = symbol
+        self.location = location  # Coordinates (latitude, longitude)
+        self.emission_rate = emission_rate  # Emission rate in grams of CO2 per hour
+        self.timestamp = []  # List to store timestamps
+        self.emission_data = []  # List to store emission data
+
+    def record_emission(self, time_captured, emission):
+        """Records an emission event."""
+        self.timestamp.append(time_captured)
+        self.emission_data.append(emission)
+
+class MappedSpace:
+    def __init__(self, boundaries):
+        """
+        Initializes a mapped space for capturing emissions.
+
+        :param boundaries: Tuple of (min_latitude, max_latitude, min_longitude, max_longitude).
+        """
+        self.boundaries = boundaries  # Boundaries of the mapped space
+        self.fragments = []  # List to hold captured emission fragments
+
+    def capture_fragment(self, source):
+        """
+        Captures the emission fragment from a source and stores it.
+
+        :param source: EmissionSource object to capture emissions from.
+        :return: Dictionary containing emission data and spatial location.
+        """
+        current_emission = self.simulate_emission(source.emission_rate)
+        source.record_emission(datetime.datetime.now(), current_emission)
+
+        # Store the fragment with its location and emission data
+        fragment = {
+            'symbol': source.symbol,
+            'location': source.location,
+            'emission': current_emission,
+            'timestamp': source.timestamp[-1]
+        }
+        self.fragments.append(fragment)
+
+        return fragment
+
+    @staticmethod
+    def simulate_emission(emission_rate):
+        """Simulates the emission event based on the emission rate."""
+        return emission_rate * (1 / 3600)  # Convert hourly rate to per second
+
+    def measure_intervals(self):
+        """Calculates intervals between fragment fluctuations."""
+        intervals = []
+        for i in range(1, len(self.fragments)):
+            prev_fragment = self.fragments[i - 1]
+            curr_fragment = self.fragments[i]
+            distance = self.calculate_distance(prev_fragment['location'], curr_fragment['location'])
+            intervals.append((curr_fragment['timestamp'], distance))
+        return intervals
+
+    @staticmethod
+    def calculate_distance(loc1, loc2):
+        """Calculates the distance between two geographical points using the Haversine formula."""
+        lat1, lon1 = loc1
+        lat2, lon2 = loc2
+        # Haversine formula
+        R = 6371  # Radius of the Earth in kilometers
+        dlat = np.radians(lat2 - lat1)
+        dlon = np.radians(lon2 - lon1)
+        a = (np.sin(dlat / 2) ** 2 +
+             np.cos(np.radians(lat1)) * np.cos(np.radians(lat2)) * np.sin(dlon / 2) ** 2)
+        c = 2 * np.arctan2(np.sqrt(a), np.sqrt(1 - a))
+        distance = R * c  # Distance in kilometers
+        return distance
+
+class FragmentIntervalTracker:
+    def __init__(self, interval, mapped_space):
+        self.interval = interval  # Interval for capturing emissions
+        self.mapped_space = mapped_space  # Mapped space for capturing fragments
+        self.sources = []  # List to hold emission sources
+
+    def add_source(self, source):
+        """Adds a new emission source to the tracker."""
+        self.sources.append(source)
+
+    def capture_emissions(self):
+        """Captures emissions from all sources at specified intervals."""
+        while True:
+            for source in self.sources:
+                fragment = self.mapped_space.capture_fragment(source)
+                print(f"Captured {fragment['emission']:.2f} gCO2 from {fragment['symbol']} at {fragment['location']}.")
+
+            time.sleep(self.interval)
+
+    def check_for_overlaps(self, emission_summary):
+        """Checks for overlaps in emissions."""
+        total_emission = sum(emission_summary.values())
+        if total_emission > 1000:  # Example threshold for overlap detection
+            print(f"** Overlap Detected! Total Emissions: {total_emission:.2f} gCO2 **")
+
+def save_emission_data(sources, filename='emission_data.json'):
+    """Saves emission data to a JSON file."""
+    data = {
+        source.symbol: {
+            'location': source.location,
+            'timestamps': source.timestamp,
+            'emission_data': source.emission_data
+        }
+        for source in sources
+    }
+    
+    with open(filename, 'w') as f:
+        json.dump(data, f, indent=4)
+    print(f"Data saved to {filename}.")
+
+def load_emission_data(filename='emission_data.json'):
+    """Loads emission data from a JSON file."""
+    with open(filename, 'r') as f:
+        return json.load(f)
+
+def plot_emissions(source):
+    """Plots emission data for a specific source."""
+    plt.figure(figsize=(10, 5))
+    plt.plot(source.timestamp, source.emission_data, marker='o', label=source.symbol)
+    plt.title(f'Emission Data for {source.symbol} at {source.location}')
+    plt.xlabel('Time')
+    plt.ylabel('gCO2 Emitted')
+    plt.xticks(rotation=45)
+    plt.grid()
+    plt.legend()
+    plt.tight_layout()
+    plt.show()
+
+def plot_overlapping_emissions(sources):
+    """Plots overlapping emission data for all sources."""
+    plt.figure(figsize=(10, 5))
+    for source in sources:
+        plt.plot(source.timestamp, source.emission_data, marker='o', label=f'{source.symbol} ({source.location})')
+
+    plt.title('Overlapping Emission Data')
+    plt.xlabel('Time')
+    plt.ylabel('gCO2 Emitted')
+    plt.xticks(rotation=45)
+    plt.legend()
+    plt.grid()
+    plt.tight_layout()
+    plt.show()
+
+def plot_intervals(intervals):
+    """Plots intervals between emission fragments."""
+    timestamps, distances = zip(*intervals)
+    plt.figure(figsize=(10, 5))
+    plt.plot(timestamps, distances, marker='o', color='orange')
+    plt.title('Spatial Intervals Between Emission Fragments')
+    plt.xlabel('Time')
+    plt.ylabel('Distance (km)')
+    plt.xticks(rotation=45)
+    plt.grid()
+    plt.tight_layout()
+    plt.show()
+
+# Main program execution
+if __name__ == "__main__":
+    # Define emission sources
+    factory = EmissionSource('S', (34.0522, -118.2437), 500)  # Symbol 'S' for factory
+    vehicle = EmissionSource('V', (34.0522, -118.2438), 200)  # Symbol 'V' for vehicle
+    power_plant = EmissionSource('P', (34.0522, -118.2436), 800)  # Symbol 'P' for power plant
+
+    # Initialize mapped space with boundaries
+    mapped_space = MappedSpace(boundaries=(34.0, 35.0, -119.0, -118.0))
+    
+    # Initialize fragment interval tracker
+    tracker = FragmentIntervalTracker(interval=60, mapped_space=mapped_space)
+    tracker.add_source(factory)
+    tracker.add_source(vehicle)
+    tracker.add_source(power_plant)
+
+    # Start capturing emissions (this will run indefinitely)
+    try:
+        tracker.capture_emissions()
+    except KeyboardInterrupt:
+        # Save data and plot intervals when interrupted
+        save_emission_data(tracker.sources)
+        intervals = mapped_space.measure_intervals()
+        plot_intervals(intervals)
+    
+    # Load and plot data (for demonstration purposes)
+    data = load_emission_data()
+    print(data)
+    
+    # Example: plot overlapping emissions for all sources
+    plot_overlapping_emissions(tracker.sources)
