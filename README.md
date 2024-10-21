@@ -274,3 +274,7 @@ Can you define the constraints as:
 
 1. C,E,M as equal to variable
 2. Lambda, i², ∆ as equal to complex with subset routines for wavelength, imaginary unit and delta maneuver
+
+
+p.s.
+the files are not to be used for other programs from this private repository 
