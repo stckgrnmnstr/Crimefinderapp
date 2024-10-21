@@ -281,5 +281,5 @@ Can you define the constraints as:
 2. Lambda, i², ∆ as equal to complex with subset routines for wavelength, imaginary unit and delta maneuver
 
 
-p.s.
+Note:
 the files are not to be used for other programs from this private repository 
