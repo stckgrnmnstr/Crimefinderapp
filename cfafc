@@ -1,0 +1,50 @@
+import numpy as np  # For matrix operations
+import random  # To simulate fragment data
+
+class FragmentCaptureSystem:
+    def __init__(self, size_threshold=0.05, concentration_threshold=50):
+        # Operator Line thresholds
+        self.size_threshold = size_threshold  # Min size of fragment to capture (in microns)
+        self.concentration_threshold = concentration_threshold  # Min concentration (ppm) for action
+        self.fragments = []  # Store fragments being tracked
+
+    def generate_fragment(self, num_fragments=100):
+        """Simulate the emission of carbon fragments with random sizes and concentrations."""
+        self.fragments = [
+            {"id": i, "size": random.uniform(0.01, 0.1), "concentration": random.randint(10, 100)}
+            for i in range(num_fragments)
+        ]
+
+    def operator_line(self):
+        """Apply an operator to group and capture eligible fragments."""
+        # Filter fragments based on size and concentration thresholds
+        eligible_fragments = [
+            f for f in self.fragments
+            if f["size"] >= self.size_threshold and f["concentration"] >= self.concentration_threshold
+        ]
+        
+        print(f"Total Fragments Captured: {len(eligible_fragments)}")
+        print("Captured Fragments:")
+        for frag in eligible_fragments:
+            print(f"ID: {frag['id']} | Size: {frag['size']:.2f} µm | Concentration: {frag['concentration']} ppm")
+
+    def apply_transformations(self):
+        """Transform captured fragments for storage or reuse (e.g., convert CO₂ to usable compounds)."""
+        captured = [
+            f for f in self.fragments
+            if f["size"] >= self.size_threshold and f["concentration"] >= self.concentration_threshold
+        ]
+        
+        transformed = [{"id": f["id"], "new_form": "Carbon Block"} for f in captured]
+        
+        print("\nTransformed Fragments:")
+        for t in transformed:
+            print(f"Fragment ID: {t['id']} converted to {t['new_form']}")
+
+# Instantiate and run the fragment capture system
+if __name__ == "__main__":
+    system = FragmentCaptureSystem(size_threshold=0.03, concentration_threshold=40)
+    system.generate_fragment(num_fragments=50)  # Simulate 50 carbon fragments
+    print("Operator Line Activated...\n")
+    system.operator_line()  # Capture eligible fragments
+    system.apply_transformations()  # Apply transformations to captured fragments
