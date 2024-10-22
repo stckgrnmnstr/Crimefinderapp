@@ -1,0 +1,86 @@
+import numpy as np
+import random
+import matplotlib.pyplot as plt  # For trend visualization
+
+class FragmentCaptureWithTrends:
+    def __init__(self, grid_size=(5, 5), time_intervals=10):
+        """Initialize the system with grid size and time intervals for frequency tracking."""
+        self.grid_size = grid_size  # Grid dimensions (rows, columns)
+        self.time_intervals = time_intervals  # Number of time intervals for tracking fluctuations
+        self.fragments = []  # Store fragment data with fluctuation trends
+
+    def generate_fragment_data(self, num_fragments=50):
+        """Generate random fragments with fluctuations in size and concentration over time."""
+        for i in range(num_fragments):
+            size_fluctuations = [random.uniform(0.01, 0.1) for _ in range(self.time_intervals)]
+            concentration_fluctuations = [random.randint(10, 100) for _ in range(self.time_intervals)]
+            position = (random.randint(0, self.grid_size[0] - 1),
+                        random.randint(0, self.grid_size[1] - 1))
+            
+            self.fragments.append({
+                "id": i,
+                "size_trend": size_fluctuations,
+                "concentration_trend": concentration_fluctuations,
+                "position": position
+            })
+
+    def identify_upward_trends(self):
+        """Identify fragments with an upward trend in size and concentration."""
+        upward_trending_fragments = []
+        for frag in self.fragments:
+            size_trend = frag["size_trend"]
+            concentration_trend = frag["concentration_trend"]
+            
+            if self.is_upward_trending(size_trend) and self.is_upward_trending(concentration_trend):
+                upward_trending_fragments.append(frag)
+
+        print(f"\nTotal Upward Trending Fragments: {len(upward_trending_fragments)}")
+        for frag in upward_trending_fragments:
+            print(f"ID: {frag['id']} | Position: {frag['position']} | "
+                  f"Final Size: {frag['size_trend'][-1]:.2f} µm | "
+                  f"Final Concentration: {frag['concentration_trend'][-1]} ppm")
+            self.plot_trend(frag)
+
+    def is_upward_trending(self, trend):
+        """Check if a given trend sequence is upward trending."""
+        return all(x <= y for x, y in zip(trend, trend[1:]))
+
+    def plot_trend(self, frag):
+        """Plot the size and concentration trends for visualization."""
+        time_points = range(self.time_intervals)
+        
+        plt.figure(figsize=(10, 5))
+        plt.subplot(1, 2, 1)
+        plt.plot(time_points, frag["size_trend"], marker='o', label='Size (µm)')
+        plt.title(f"Fragment ID {frag['id']} - Size Trend")
+        plt.xlabel('Time Interval')
+        plt.ylabel('Size (µm)')
+        plt.grid(True)
+
+        plt.subplot(1, 2, 2)
+        plt.plot(time_points, frag["concentration_trend"], marker='o', color='r', label='Concentration (ppm)')
+        plt.title(f"Fragment ID {frag['id']} - Concentration Trend")
+        plt.xlabel('Time Interval')
+        plt.ylabel('Concentration (ppm)')
+        plt.grid(True)
+
+        plt.tight_layout()
+        plt.show()
+
+    def grid_distribution(self):
+        """Show the distribution of fragments across the spatial grid."""
+        grid = np.zeros(self.grid_size)
+
+        for frag in self.fragments:
+            x, y = frag["position"]
+            grid[x, y] += 1
+
+        print("\nFragment Distribution Across Grid Intervals:")
+        print(grid)
+
+# Instantiate and run the program
+if __name__ == "__main__":
+    system = FragmentCaptureWithTrends(grid_size=(5, 5), time_intervals=8)
+    system.generate_fragment_data(num_fragments=30)
+    system.grid_distribution()
+    system.identify_upward_trends()
