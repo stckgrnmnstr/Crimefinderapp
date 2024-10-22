@@ -5,7 +5,9 @@ The code is complete, with the physics portion being the crucial piece. Use the 
 Build for Singular programs:
 
 -Ten dimension processing of value
+
 -Quantized point analysis sequence 
+
 -Carbon emissions source tracking, identification and polygon extrapolation and description
  
 ✨ Crimefinderapp Explanation with Singular Solution to Errors✨
