@@ -1,0 +1,72 @@
+import numpy as np  # For matrix and grid operations
+import random  # To simulate fragment data
+
+class FragmentCaptureSystem:
+    def __init__(self, size_threshold=0.05, concentration_threshold=50, grid_size=(10, 10)):
+        """Initialize capture system with size/concentration thresholds and a spatial grid."""
+        self.size_threshold = size_threshold
+        self.concentration_threshold = concentration_threshold
+        self.grid_size = grid_size  # Define the spatial grid size (rows, cols)
+        self.fragments = []  # Store fragment data
+
+    def generate_fragment(self, num_fragments=100):
+        """Simulate emission fragments with random sizes, concentrations, and spatial positions."""
+        self.fragments = [
+            {
+                "id": i,
+                "size": random.uniform(0.01, 0.1),  # Size in microns
+                "concentration": random.randint(10, 100),  # Concentration in ppm
+                "position": (random.randint(0, self.grid_size[0] - 1),
+                             random.randint(0, self.grid_size[1] - 1))  # (x, y) grid coordinates
+            }
+            for i in range(num_fragments)
+        ]
+
+    def operator_line(self):
+        """Apply filters based on size, concentration, and space intervals."""
+        eligible_fragments = [
+            f for f in self.fragments
+            if f["size"] >= self.size_threshold
+            and f["concentration"] >= self.concentration_threshold
+        ]
+        
+        print(f"\nTotal Fragments Captured: {len(eligible_fragments)}")
+        for frag in eligible_fragments:
+            x, y = frag["position"]
+            print(f"ID: {frag['id']} | Size: {frag['size']:.2f} µm | "
+                  f"Concentration: {frag['concentration']} ppm | Position: ({x}, {y})")
+
+    def group_fragments_by_interval(self):
+        """Organize fragments by their positions in the spatial grid."""
+        grid = np.zeros(self.grid_size)  # Initialize grid to track fragment densities
+
+        # Count the number of fragments in each grid cell
+        for frag in self.fragments:
+            x, y = frag["position"]
+            grid[x, y] += 1
+
+        print("\nFragment Distribution Across Space Intervals (Grid):")
+        print(grid)
+
+    def apply_transformations(self):
+        """Apply transformations to eligible fragments."""
+        captured = [
+            f for f in self.fragments
+            if f["size"] >= self.size_threshold
+            and f["concentration"] >= self.concentration_threshold
+        ]
+        
+        transformed = [{"id": f["id"], "new_form": "Carbon Block"} for f in captured]
+        
+        print("\nTransformed Fragments:")
+        for t in transformed:
+            print(f"Fragment ID: {t['id']} converted to {t['new_form']}")
+
+# Instantiate and run the fragment capture system with space intervals
+if __name__ == "__main__":
+    system = FragmentCaptureSystem(size_threshold=0.03, concentration_threshold=40, grid_size=(5, 5))
+    system.generate_fragment(num_fragments=50)  # Generate 50 random fragments
+    print("Operator Line Activated...\n")
+    system.operator_line()  # Capture eligible fragments
+    system.group_fragments_by_interval()  # Display spatial distribution
+    system.apply_transformations()  # Apply transformations to captured fragments
